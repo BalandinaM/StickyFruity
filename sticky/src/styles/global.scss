@@ -1,0 +1,49 @@
+@use "./variables";
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Fredoka:wght@300..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+	font-family: variables.$font-interface;
+	line-height: 1.5;
+	font-weight: variables.$weight-regular;
+	font-size: variables.$interface-md;
+
+	color: variables.$text-dark;
+	background-color: variables.$cream;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {}
+
+a:hover {}
+
+body {
+	margin: 0;
+	display: flex;
+	place-items: center;
+	min-width: 375px;
+	min-height: 100vh;
+}
+
+h1 {
+	font-size: 3.2em;
+	line-height: 1.1;
+}
+
+button {}
+
+button:hover {}
+
+button:focus,
+button:focus-visible {}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+	background-color: variables.$amethyst;
+}
