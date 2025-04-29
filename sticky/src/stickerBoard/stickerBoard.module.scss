@@ -1,0 +1,11 @@
+@use "./../styles/variables.scss";
+
+.main {
+	flex-grow: 1;
+}
+
+.text {
+	font-size: variables.$interface-md;
+	font-weight: variables.$weight-bold;
+	margin-bottom: 13px;
+}

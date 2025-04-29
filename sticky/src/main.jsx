@@ -13,6 +13,7 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage404 />,
 		loader: rootLoader,
 		action: rootAction,
+		hydrateFallbackElement: <div>Загрузка...</div>,
 	},
 ]);
 

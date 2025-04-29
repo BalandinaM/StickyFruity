@@ -1,7 +1,10 @@
+@use './../styles/variables.scss';
+
 .footer {
 
 }
 
 .copyright {
-
+	font-size: variables.$interface-sm-bold;
+	font-weight: variables.$weight-bold;
 }
