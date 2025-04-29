@@ -7,7 +7,7 @@
 	font-weight: variables.$weight-regular;
 	font-size: variables.$interface-md;
 
-	color: variables.$text-dark;
+	color: variables.$text-interface;
 	background-color: variables.$cream;
 
 	font-synthesis: none;
@@ -45,5 +45,5 @@ button:focus-visible {}
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-	background-color: variables.$amethyst;
+	//background-color: variables.$amethyst;
 }
