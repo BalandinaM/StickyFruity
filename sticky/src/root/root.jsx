@@ -11,7 +11,8 @@ export async function loader() {
 
 export async function action() {
 	const note = await createNote();
-	return { note };
+	console.log("Данные сохранены:", note);
+	return { success: true, note };
 }
 
 const Root = () => {

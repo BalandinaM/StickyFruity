@@ -1,8 +1,7 @@
-import { Form } from "react-router-dom";
 import styles from "./stickerBoard.module.scss";
-import ButtonAddSticker from "../components/buttonAddSticker/buttonAddSticker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NewSticker from "../newSticker/newSticker";
+import { useActionData } from "react-router-dom";
 
 const StickerBoard = () => {
 	//два состояния,
@@ -11,17 +10,21 @@ const StickerBoard = () => {
 	// а позиционировать абсолютно, относительно экрана
 	// 2.если нет записей - текст и кнопку
 	const [createNewSticker, setCreateNewSticker] = useState(false);
+	console.log("Текущее состояние createNewSticker:", createNewSticker);
+	const actionData = useActionData(); // Данные, возвращённые из action
 
-	const handleClickAddSticker = () => {
-		console.log("Добавить стикер!");
-		setCreateNewSticker(true);
-	};
+	// Закрываем окно, если action завершился успешно
+	useEffect(() => {
+		if (actionData?.success) {
+			setCreateNewSticker(false);
+		}
+	}, [actionData, setCreateNewSticker]);
+
 
 	return (
 		<main className={styles.main}>
 			<p className={styles.text}>Вы еще не добавили ни одного стикера. Сделайте это сейчас!</p>
-			{/* <Form method='post'><button type='submit'>ADD STICKER</button></Form> */}
-			<ButtonAddSticker handleClickAddSticker={handleClickAddSticker} />
+			<button className={`${styles.commonButton} ${styles.rectangleButton}`} onClick={() => setCreateNewSticker(true)} type="button">Новый стикер</button>
 			{/* если записи в хранилище есть */}
 			{/* <ul>
 				<li>стикер1</li>
