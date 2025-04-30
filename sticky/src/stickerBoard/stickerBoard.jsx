@@ -3,15 +3,17 @@ import { useState, useEffect } from "react";
 import NewSticker from "../newSticker/newSticker";
 import { useActionData } from "react-router-dom";
 
-const StickerBoard = () => {
+const StickerBoard = ({ arrNotes }) => {
 	//два состояния,
 	// 1.если стики есть в локальном хранилище - показываем доску
 	//  со стиками и кнопку трансформируем и переносим вниз,
 	// а позиционировать абсолютно, относительно экрана
 	// 2.если нет записей - текст и кнопку
+	console.log("В StickerBoard пришло", arrNotes);
 	const [createNewSticker, setCreateNewSticker] = useState(false);
-	console.log("Текущее состояние createNewSticker:", createNewSticker);
 	const actionData = useActionData(); // Данные, возвращённые из action
+	arrNotes.map((item) => console.log(item));
+	const hasNotes = arrNotes && arrNotes.length > 0;
 
 	// Закрываем окно, если action завершился успешно
 	useEffect(() => {
@@ -20,18 +22,43 @@ const StickerBoard = () => {
 		}
 	}, [actionData, setCreateNewSticker]);
 
-
 	return (
 		<main className={styles.main}>
-			<p className={styles.text}>Вы еще не добавили ни одного стикера. Сделайте это сейчас!</p>
-			<button className={`${styles.commonButton} ${styles.rectangleButton}`} onClick={() => setCreateNewSticker(true)} type="button">Новый стикер</button>
-			{/* если записи в хранилище есть */}
-			{/* <ul>
-				<li>стикер1</li>
-				<li>стикер2</li>
-				<li>стикер3</li>
-			</ul> */}
-			{createNewSticker ? <NewSticker setCreateNewSticker={setCreateNewSticker}/> : null}
+			{hasNotes ? (
+				<>
+					<ul className={styles.listNotes}>
+						{arrNotes.map((item) => (
+							<li key={item.id} className={styles.note}>
+								{item.note}
+							</li>
+						))}
+					</ul>
+					<button
+						className={`${styles.commonButton} ${styles.circleButton}`}
+						onClick={() => setCreateNewSticker(true)}
+						type="button"
+					>
+						Новый стикер
+					</button>
+				</>
+			) : (
+				<>
+					<p className={styles.text}>
+						Вы еще не добавили ни одного стикера. Сделайте это сейчас!
+					</p>
+					<button
+						className={styles.commonButton}
+						onClick={() => setCreateNewSticker(true)}
+						type="button"
+					>
+						Новый стикер
+					</button>
+				</>
+			)}
+
+			{createNewSticker && (
+				<NewSticker setCreateNewSticker={setCreateNewSticker} />
+			)}
 		</main>
 	);
 };

@@ -9,8 +9,10 @@ export async function loader() {
 	return { notes };
 }
 
-export async function action() {
-	const note = await createNote();
+export async function action({request}) {
+	const formData = await request.formData();
+	const dates = Object.fromEntries(formData);
+	const note = await createNote(dates);
 	console.log("Данные сохранены:", note);
 	return { success: true, note };
 }
@@ -21,8 +23,8 @@ const Root = () => {
   return (
     <>
 			<Header />
-			<StickerBoard />
-			<Footer></Footer>
+			<StickerBoard arrNotes={notes}/>
+			<Footer />
     </>
   )
 }

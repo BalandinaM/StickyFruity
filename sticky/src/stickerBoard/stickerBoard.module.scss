@@ -10,6 +10,35 @@
 	margin-bottom: 13px;
 }
 
+.listNotes {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	row-gap: 22px;
+	column-gap: 27px;
+	margin: auto;
+	// min-width: 150px;
+	// min-height: 150px;
+}
+
+.note {
+	width: 45%;
+  max-width: 300px;
+  height: 39vw;
+  min-height: 150px;
+  max-height: 300px;
+	background-color: variables.$sunflower;
+	background-image: url('./../assets/images/sublayer.png');
+	background-size: 100%;
+	background-repeat: repeat;
+	padding: 10px;
+	font-family: variables.$font-sticker;
+	font-size: variables.$sticker-sm;
+	overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
 .commonButton {
 	display: block;
 	box-sizing: border-box;
@@ -34,5 +63,8 @@
 }
 
 .circleButton {
-
+	position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
 }

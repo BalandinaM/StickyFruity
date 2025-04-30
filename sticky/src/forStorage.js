@@ -8,10 +8,11 @@ export async function getNotes() {
 	return notes;
 }
 
-export async function createNote() {
+export async function createNote(dates) {
 	await someNetwork();
+	console.log(dates.newSticker)
 	let id = nanoid(5);
-	let note = { id };
+	let note = { id, note:  dates.newSticker};
 	let notes = await getNotes();
 	notes.unshift(note);
 	await setNotes(notes);
