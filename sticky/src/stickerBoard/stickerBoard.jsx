@@ -28,7 +28,7 @@ const StickerBoard = () => {
 				<li>стикер2</li>
 				<li>стикер3</li>
 			</ul> */}
-			{createNewSticker ? <NewSticker /> : null}
+			{createNewSticker ? <NewSticker setCreateNewSticker={setCreateNewSticker}/> : null}
 		</main>
 	);
 };
