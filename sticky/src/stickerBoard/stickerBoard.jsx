@@ -37,9 +37,7 @@ const StickerBoard = ({ arrNotes }) => {
 						className={`${styles.commonButton} ${styles.circleButton}`}
 						onClick={() => setCreateNewSticker(true)}
 						type="button"
-					>
-						Новый стикер
-					</button>
+					/>
 				</>
 			) : (
 				<>
