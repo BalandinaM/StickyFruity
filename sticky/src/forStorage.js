@@ -1,5 +1,6 @@
 import localforage from "localforage";
 import { nanoid } from 'nanoid';
+import { stickerColors } from "./styles/stickerColors";
 
 export async function getNotes() {
 	await someNetwork();
@@ -10,9 +11,13 @@ export async function getNotes() {
 
 export async function createNote(dates) {
 	await someNetwork();
-	console.log(dates.newSticker)
+	console.log(dates.newSticker);
 	let id = nanoid(5);
-	let note = { id, note:  dates.newSticker};
+	let note = {
+		id,
+		note: dates.newSticker,
+		color: stickerColors[Math.floor(Math.random() * stickerColors.length)],
+	};
 	let notes = await getNotes();
 	notes.unshift(note);
 	await setNotes(notes);

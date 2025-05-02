@@ -28,7 +28,11 @@ const StickerBoard = ({ arrNotes }) => {
 				<>
 					<ul className={styles.listNotes}>
 						{arrNotes.map((item) => (
-							<li key={item.id} className={styles.note}>
+							<li
+								key={item.id}
+								className={styles.note}
+								style={{ "--note-color": item.color }}
+							>
 								{item.note}
 							</li>
 						))}
