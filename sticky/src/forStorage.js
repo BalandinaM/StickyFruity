@@ -28,6 +28,21 @@ function setNotes(notes) {
 	return localforage.setItem('notes', notes);
 }
 
+export async function updateNote(id, newText) {
+  const notes = await getNotes();
+  const updatedNotes = notes.map(note =>
+    note.id === id ? { ...note, note: newText } : note
+  );
+  await localforage.setItem('notes', updatedNotes);
+  return updatedNotes.find(note => note.id === id);
+};
+
+export async function  deleteNote(id) {
+  const notes = await getNotes();
+  const filteredNotes = notes.filter(note => note.id !== id);
+  await localforage.setItem('notes', filteredNotes);
+};
+
 let someCache = {};
 
 async function someNetwork(key) {

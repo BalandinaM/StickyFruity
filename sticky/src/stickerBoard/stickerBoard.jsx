@@ -2,18 +2,15 @@ import styles from "./stickerBoard.module.scss";
 import { useState, useEffect } from "react";
 import NewSticker from "../newSticker/newSticker";
 import { useActionData } from "react-router-dom";
+import StickerEdit from "../stickerEdit/stickerEdit";
 
 const StickerBoard = ({ arrNotes }) => {
-	//два состояния,
-	// 1.если стики есть в локальном хранилище - показываем доску
-	//  со стиками и кнопку трансформируем и переносим вниз,
-	// а позиционировать абсолютно, относительно экрана
-	// 2.если нет записей - текст и кнопку
 	console.log("В StickerBoard пришло", arrNotes);
 	const [createNewSticker, setCreateNewSticker] = useState(false);
 	const actionData = useActionData(); // Данные, возвращённые из action
-	arrNotes.map((item) => console.log(item));
+	//arrNotes.map((item) => console.log(item));
 	const hasNotes = arrNotes && arrNotes.length > 0;
+	const [activeSticker, setActiveSticker] = useState(null);
 
 	// Закрываем окно, если action завершился успешно
 	useEffect(() => {
@@ -22,20 +19,30 @@ const StickerBoard = ({ arrNotes }) => {
 		}
 	}, [actionData, setCreateNewSticker]);
 
+	const handleClick = (item) => {
+		setActiveSticker(item.id);
+		console.log(`Клик по стикеру ${item.id}`);
+	};
+
 	return (
 		<main className={styles.main}>
 			{hasNotes ? (
 				<>
 					<ul className={styles.listNotes}>
-						{arrNotes.map((item) => (
-							<li
-								key={item.id}
-								className={styles.note}
-								style={{ "--note-color": item.color }}
-							>
-								{item.note}
-							</li>
-						))}
+						{arrNotes.map((item) =>
+							activeSticker === item.id ? (
+								<StickerEdit key={item.id} item={item} onClose={() => setActiveSticker(null)}/>
+							) : (
+								<li
+									key={item.id}
+									className={styles.note}
+									style={{ "--note-color": item.color }}
+									onClick={() => handleClick(item)}
+								>
+									{item.note}
+								</li>
+							)
+						)}
 					</ul>
 					<button
 						className={`${styles.commonButton} ${styles.circleButton}`}

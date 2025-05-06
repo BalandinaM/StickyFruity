@@ -17,6 +17,7 @@
 	row-gap: 22px;
 	column-gap: 27px;
 	margin: auto;
+	position: relative;
 	// min-width: 150px;
 	// min-height: 150px;
 }
@@ -38,6 +39,14 @@
 	overflow-wrap: break-word;
   word-break: break-word;
   hyphens: auto;
+}
+
+.note_active {
+	width: 250px;
+	min-height: 250px;
+	position: absolute;
+	top: center;
+	left: center;
 }
 
 .commonButton {
