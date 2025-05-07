@@ -11,9 +11,12 @@ const NewSticker = ({ setCreateNewSticker }) => {
 	const fetcher = useFetcher(); // Добавляем useFetcher
 
 	const handleDeleteClick = () => {
-		console.log("Удалить все нахрен!");
-		setValue("");
-		setCreateNewSticker(false);
+		if (window.confirm('Вы уверены что хотите удалить введенный текст?')) {
+			console.log("Удалить все нахрен!");
+			setValue("");
+			setCreateNewSticker(false);
+		}
+
 	};
 
 	const handleSubmit = (e) => {

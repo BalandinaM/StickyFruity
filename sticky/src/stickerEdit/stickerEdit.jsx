@@ -18,10 +18,12 @@ const StickerEdit = ({ item, onClose }) => {
   };
 
 	const handleDelete = () => {
+    if (window.confirm('Вы точно хотите удалить этот стикер?')) {
     fetcher.submit(
       { id: item.id, _action: "delete" },
       { method: "post" }
     );
+		}
   };
 
 	useEffect(() => {
