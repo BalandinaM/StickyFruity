@@ -2,7 +2,7 @@
 import styles from "./newSticker.module.scss";
 import StickerButton from "../components/stickerButton/stickerButton";
 import SaveStickerIcon from "../components/saveStickerIcon/saveStickerIcon";
-import DeleteStickerIcon from "../components/deleteStickerIcon/deleteStikerIcon";
+import DeleteStickerIcon from "../components/deleteStickerIcon/deleteStickerIcon"
 import { useState, useEffect } from "react";
 import { useFetcher } from "react-router-dom";
 

@@ -23,3 +23,29 @@
   from { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
   to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
+
+.wrap_button {
+	display: flex;
+	gap: 5px;
+	justify-content: flex-end;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.button_close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.button_save {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
+
+.button_delete {
+	position: absolute;
+	bottom: 5px;
+	right: 55px;
+}

@@ -1,6 +1,10 @@
 import styles from './stickerEdit.module.scss';
 import { useFetcher } from "react-router-dom";
 import { useState, useEffect } from 'react';
+import StickerButton from '../components/stickerButton/stickerButton';
+import SaveStickerIcon from '../components/saveStickerIcon/saveStickerIcon';
+import DeleteStickerIcon from '../components/deleteStickerIcon/deleteStickerIcon';
+import CloseStickerIcon from '../components/closeStickerIcon/closeStikerIcon';
 
 const StickerEdit = ({ item, onClose }) => {
 	const fetcher = useFetcher();
@@ -39,11 +43,14 @@ const StickerEdit = ({ item, onClose }) => {
 			style={{ "--note-color": item.color }}
 		>
 			<textarea value={text} onChange={(e) => setText(e.target.value)} />
-			<div>
-				<button onClick={handleSave} disabled={fetcher.state === "submitting"}>
+			<div className={styles.wrap_button}>
+				<StickerButton handleClick={handleDelete} icon={<DeleteStickerIcon />} type="button"></StickerButton>
+			<StickerButton handleClick={handleSave} icon={<SaveStickerIcon />} type="button" disabled={fetcher.state === "submitting"}>
 					{fetcher.state === "submitting" ? "Сохранение..." : "Save"}
-				</button>
-				<button onClick={handleDelete}>Delete</button>
+				</StickerButton>
+
+				<StickerButton customClass={styles.button_close} handleClick={() => onClose()} icon={<CloseStickerIcon />} type="button"></StickerButton>
+
 			</div>
 		</li>
 	);
