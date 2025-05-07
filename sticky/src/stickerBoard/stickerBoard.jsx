@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NewSticker from "../newSticker/newSticker";
 import { useActionData } from "react-router-dom";
 import StickerEdit from "../stickerEdit/stickerEdit";
+import Sticker from "../sticker/sticker";
 
 const StickerBoard = ({ arrNotes }) => {
 	console.log("В StickerBoard пришло", arrNotes);
@@ -33,14 +34,7 @@ const StickerBoard = ({ arrNotes }) => {
 							activeSticker === item.id ? (
 								<StickerEdit key={item.id} item={item} onClose={() => setActiveSticker(null)}/>
 							) : (
-								<li
-									key={item.id}
-									className={styles.note}
-									style={{ "--note-color": item.color }}
-									onClick={() => handleClick(item)}
-								>
-									{item.note}
-								</li>
+								<Sticker item={item} handleClick={handleClick}></Sticker>
 							)
 						)}
 					</ul>
