@@ -1,5 +1,9 @@
-.header {
+@use "./../styles/variables.scss";
 
+.header {
+	display: flex;
+	justify-content: end;
+	margin-bottom: clamp(1.2em, 1.5vw, 2em);
 }
 
 .visually_hidden {
@@ -12,5 +16,13 @@
 }
 
 .logo {
-	margin-left: auto;
+	font-family: variables.$font-display;
+	font-size: variables.$display-xl;
+	font-weight: 700;
+	background: linear-gradient(90deg, #9B59B6, #54C6EB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
+
