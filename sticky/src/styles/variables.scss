@@ -34,15 +34,16 @@ $weight-bold: 700;
 $sticker-sm: 12px; // Мелкие стикеры
 $sticker-md: 16px; // Средние стикеры
 $sticker-lg: 18px; // Крупные стикеры
-
+$sticker: clamp(12px, 1.5vw, 16px);
 // Nunito (интерфейс) — адаптивные
-$interface-sm: clamp(11px, 3vw, 12px); // 12px (десктоп) → ~11px (мобильные)
+//$interface-sm: clamp(11px, 3vw, 12px); // 12px (десктоп) → ~11px (мобильные)
+$interface-sm: clamp(11px, 3vw, 16px);
 $interface-md: clamp(16px, 4.5vw, 18px); // 18px → ~16px
 $interface-lg: clamp(20px, 6vw, 24px); // 24px → ~20px
 $interface-sm-bold: clamp(11px, 3vw, 12px); // 12px bold → ~11px bold
 
 // Fredoka (заголовки) — сильное масштабирование
-$display-xl: clamp(28px, 9vw, 36px); // 36px → ~28px на узких экранах
+$display-xl: clamp(36px, 6vw, 54px); // 36px → ~28px на узких экранах
 
 // ======================
 // Миксины
