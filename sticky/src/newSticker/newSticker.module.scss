@@ -20,15 +20,20 @@
 }
 
 .container {
-	width: 250px;
-	min-height: 250px;
+	width: clamp(250px, 30vw, 350px);
+  height: clamp(250px, 30vw, 350px);
+	// width: 250px;
+	// height: 250px;
 	background-color: variables.$amethyst;
 	background-image: url('./../assets/images/sublayer.png');
 	background-size: 100%;
 	background-repeat: repeat;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	animation: slideUp 0.3s ease-out;
+
+
 }
 
 @keyframes slideUp {
@@ -59,9 +64,9 @@ textarea {
   min-height: 200px;
   padding: 1rem;
   resize: vertical;
-  margin-bottom: 1rem;
+  //margin-bottom: 1rem;
   font-family: variables.$font-sticker;
-  font-size: variables.$sticker-md;
+  font-size: variables.$sticker;
 }
 
 .wrapButton {
