@@ -1,6 +1,9 @@
 .note_active {
-	width: 250px;
-	min-height: 250px;
+	width: clamp(250px, 30vw, 350px);
+  height: clamp(250px, 30vw, 350px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	position: fixed;
 	background-color: var(--note-color);
 	background-image: url('./../assets/images/sublayer.png');
@@ -28,24 +31,25 @@
 	display: flex;
 	gap: 5px;
 	justify-content: flex-end;
-	margin-right: 5px;
-	margin-bottom: 5px;
+	padding: clamp(0.3rem, 1vw, 0.8rem);
+	padding-top: 0;
 }
 
-.button_close {
-	position: absolute;
-	top: 5px;
-	right: 5px;
-}
+// .button_close {
+// 	position: absolute;
+// 	top: 5px;
+// 	right: 5px;
+// }
 
-.button_save {
-	position: absolute;
-	bottom: 5px;
-	right: 5px;
-}
+// .button_save {
+// 	position: absolute;
+// 	bottom: 5px;
+// 	right: 5px;
+// }
 
 .button_delete {
-	position: absolute;
-	bottom: 5px;
-	right: 55px;
+	margin-right: auto;
+	// position: absolute;
+	// bottom: 5px;
+	// right: 55px;
 }

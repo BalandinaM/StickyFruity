@@ -1,8 +1,8 @@
 const CloseStickerIcon = () => {
 	return (
 		<svg
-			width="48"
-			height="48"
+			width="clamp(48px, calc(48px + (30vw - 250px) * 0.16), 64px)"
+      height="clamp(48px, calc(48px + (30vw - 250px) * 0.16), 64px)"
 			viewBox="0 0 48 48"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"

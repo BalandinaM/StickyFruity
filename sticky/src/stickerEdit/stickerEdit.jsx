@@ -44,13 +44,26 @@ const StickerEdit = ({ item, onClose }) => {
 		>
 			<textarea value={text} onChange={(e) => setText(e.target.value)} />
 			<div className={styles.wrap_button}>
-				<StickerButton handleClick={handleDelete} icon={<DeleteStickerIcon />} type="button"></StickerButton>
-			<StickerButton handleClick={handleSave} icon={<SaveStickerIcon />} type="button" disabled={fetcher.state === "submitting"}>
+				<StickerButton
+					customClass={styles.button_delete}
+					handleClick={handleDelete}
+					icon={<DeleteStickerIcon />}
+					type="button"
+				></StickerButton>
+				<StickerButton
+					//customClass={styles.button_close}
+					handleClick={() => onClose()}
+					icon={<CloseStickerIcon />}
+					type="button"
+				></StickerButton>
+				<StickerButton
+					handleClick={handleSave}
+					icon={<SaveStickerIcon />}
+					type="button"
+					disabled={fetcher.state === "submitting"}
+				>
 					{fetcher.state === "submitting" ? "Сохранение..." : "Save"}
 				</StickerButton>
-
-				<StickerButton customClass={styles.button_close} handleClick={() => onClose()} icon={<CloseStickerIcon />} type="button"></StickerButton>
-
 			</div>
 		</li>
 	);

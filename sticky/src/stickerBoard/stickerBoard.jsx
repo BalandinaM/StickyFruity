@@ -5,6 +5,8 @@ import { useActionData } from "react-router-dom";
 import StickerEdit from "../stickerEdit/stickerEdit";
 import Sticker from "../sticker/sticker";
 
+//сделать эффект при наведении на стикеры, чтобы было понятно что они кликабельны
+
 const StickerBoard = ({ arrNotes }) => {
 	console.log("В StickerBoard пришло", arrNotes);
 	const [createNewSticker, setCreateNewSticker] = useState(false);

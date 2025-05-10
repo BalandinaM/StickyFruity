@@ -2,6 +2,7 @@
 
 .main {
 	flex-grow: 1;
+	//position: relative;
 }
 
 .text {
@@ -14,9 +15,11 @@
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	row-gap: 22px;
-	column-gap: 27px;
+	justify-content: center;
+	row-gap: clamp(22px, 1.5vw, 30px);
+	column-gap: clamp(22px, 1.5vw, 30px);
 	margin: auto;
+	//margin-bottom: 30px;
 	position: relative;
 	// min-width: 150px;
 	// min-height: 150px;
@@ -74,15 +77,20 @@
 
 .circleButton {
 	position: fixed;
-  right: 20px;
-  bottom: 20px;
+  // right: 20px;
+  // bottom: 20px;
+	//right: clamp(1.5rem, 5vw, 3.2rem);
+	right: calc(50% - min(1240px, 100%)/2 + clamp(1.5rem, 5vw, 6rem));
+	bottom: clamp(1.5rem, 3vw, 3.2rem);
   z-index: 1000;
 	width: 60px;
 	height: 60px;
+	width: clamp(60px, 8vw, 75px);
+	height: clamp(60px, 8vw, 75px);;
 	border-radius: 50%;
 	padding: 0;
 	background-image: url('./../assets/images/plusForButton.svg');
 	background-repeat: no-repeat;
-	background-size: 20px 20px;
+	background-size: clamp(20px, 4vw, 30px) clamp(20px, 4vw, 30px);
 	background-position: center;
 }
