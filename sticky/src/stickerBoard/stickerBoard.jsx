@@ -36,7 +36,7 @@ const StickerBoard = ({ arrNotes }) => {
 							activeSticker === item.id ? (
 								<StickerEdit key={item.id} item={item} onClose={() => setActiveSticker(null)}/>
 							) : (
-								<Sticker item={item} handleClick={handleClick}></Sticker>
+								<Sticker key={item.id} item={item} handleClick={handleClick}></Sticker>
 							)
 						)}
 					</ul>
