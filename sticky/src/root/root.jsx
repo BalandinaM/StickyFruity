@@ -5,6 +5,7 @@ import { getNotes, createNote, updateNote, deleteNote } from './../forStorage';
 import { useLoaderData } from "react-router-dom";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "../../node_modules/react-dnd-html5-backend/dist/index";
+import { DNDStickerBoard } from "../stickerBoard/DNDstickerBoard";
 
 export async function loader() {
 	const notes = await getNotes();
@@ -50,7 +51,8 @@ const Root = () => {
 		<>
 			<Header />
 			<DndProvider backend={HTML5Backend}>
-				<StickerBoard arrNotes={notes} />
+				{/* <StickerBoard arrNotes={notes} /> */}
+				<DNDStickerBoard arrNotes={notes}/>
 			</DndProvider>
 			<Footer />
 		</>
