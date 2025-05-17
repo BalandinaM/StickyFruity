@@ -3,6 +3,8 @@ import Header from "../header/header";
 import StickerBoard from "../stickerBoard/stickerBoard";
 import { getNotes, createNote, updateNote, deleteNote } from './../forStorage';
 import { useLoaderData } from "react-router-dom";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "../../node_modules/react-dnd-html5-backend/dist/index";
 
 export async function loader() {
 	const notes = await getNotes();
@@ -45,12 +47,14 @@ const Root = () => {
 	const { notes } = useLoaderData();
 	//console.log('Загружены данные из локального хранилища', notes);
   return (
-    <>
+		<>
 			<Header />
-			<StickerBoard arrNotes={notes}/>
+			<DndProvider backend={HTML5Backend}>
+				<StickerBoard arrNotes={notes} />
+			</DndProvider>
 			<Footer />
-    </>
-  )
+		</>
+	);
 }
 
 export default Root;
