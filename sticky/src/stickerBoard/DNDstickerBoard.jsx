@@ -107,6 +107,10 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true }) 
     if (overlappingStickers.length > 0) {
       console.log('Стикер находится в стопке! Поднимаем на верх...');
 
+			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// тут из рефа надо будет достать!!!
+			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
       // 2. Находим максимальный zIndex среди всех стикеров (не только пересекающихся)
       const allZIndices = Object.values(stickers).map(s => s.zIndex || 0);
       const maxZIndex = Math.max(...allZIndices);
@@ -148,3 +152,4 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true }) 
         </div>
   )
 }
+

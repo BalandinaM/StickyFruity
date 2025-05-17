@@ -15,6 +15,28 @@ const StickerBoard = ({ arrNotes }) => {
 	const hasNotes = arrNotes && arrNotes.length > 0;
 	const [activeSticker, setActiveSticker] = useState(null);
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// для более производительного расчета z-index!!!!!!!!
+// предполагается что дожидаемся ответа от сервера,!!!!
+// меняем maxZIndexRef.current на newSticker.zIndex,!!!
+// и устанавливаем новый стейт!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//setStickers(prev => ({ ...newSticker, ...prev }));!!!!!!!!!!!!!!!!!!!!!!
+// вероятно это можно запихнуть в юзеэффект который ниже у меня в коде.!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// 	const maxZIndexRef = useRef(1);
+
+// // В компоненте:
+// const handleCreateSticker = async () => {
+//   const newSticker = await createSticker(
+//     "Текст",
+//     containerSize,
+//     maxZIndexRef.current
+//   );
+//   maxZIndexRef.current = newSticker.zIndex;
+//   setStickers(prev => ({ ...newSticker, ...prev }));
+// };
+
 	// Закрываем окно, если action завершился успешно
 	useEffect(() => {
 		if (actionData?.success) {
