@@ -1,15 +1,8 @@
 import { useDrag } from 'react-dnd'
 import { StickerTypes } from './StickerTypes.js'
-const style = {
-  position: 'absolute',
-  border: '2px dashed gray',
-  width: '250px',
-  height: '250px',
-  backgroundColor: 'red',
-  padding: '0.5rem 1rem',
-  cursor: 'move',
-}
-export const DNDSticker = ({ id, left, top, zIndex, hideSourceOnDrag, children, handleClickSticker }) => {
+import styles from './sticker.module.scss'
+
+export const DNDSticker = ({ id, left, top, zIndex, backgroundColor, hideSourceOnDrag, children, handleClickSticker }) => {
   const [{ isDragging }, drag] = useDrag(
     () => ({
       type: StickerTypes.STICKER,
@@ -25,10 +18,10 @@ export const DNDSticker = ({ id, left, top, zIndex, hideSourceOnDrag, children, 
   }
   return (
     <div
-      className="box"
+      className={styles.note}
       ref={drag}
-      style={{ ...style, left, top, zIndex }}
-      data-testid="box"
+      style={{ left, top, zIndex, backgroundColor }}
+      //data-testid="box"
       onClick = {() => handleClickSticker(id)}
     >
       {children}

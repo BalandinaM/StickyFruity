@@ -1,15 +1,10 @@
 @use "./../styles/variables.scss";
 
 .note {
-	--note-color: variables.$sunflower;
+	position: absolute;
+	cursor: move;
 	width: clamp(150px, 30vw, 250px);
   height: clamp(150px, 30vw, 250px);
-	// width: 45%;
-  // max-width: 250px;
-  // height: 39vw;
-  // min-height: 150px;
-  // max-height: 250px;
-	background-color: var(--note-color);
 	background-image: url('./../assets/images/sublayer.png');
 	background-size: 100%;
 	background-repeat: repeat;

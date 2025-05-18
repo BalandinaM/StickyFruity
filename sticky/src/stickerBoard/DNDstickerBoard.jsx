@@ -140,7 +140,7 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, se
         <>
         	<div ref={drop} style={style}>
 	          {Object.keys(stickers).map((key) => {
-	            const { left, top, title, zIndex } = stickers[key]
+	            const { left, top, title, zIndex, color } = stickers[key]
 	            return (
 	                  <DNDSticker
 	                    key={key}
@@ -148,6 +148,7 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, se
 	                    left={left}
 	                    top={top}
 	                    zIndex={zIndex}
+											backgroundColor={color}
 	                    hideSourceOnDrag={hideSourceOnDrag}
 	                    handleClickSticker={handleClickSticker}
 	                  >
