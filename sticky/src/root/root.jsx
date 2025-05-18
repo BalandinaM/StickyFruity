@@ -1,6 +1,6 @@
 import Footer from "../footer/footer";
 import Header from "../header/header";
-import StickerBoard from "../stickerBoard/stickerBoard";
+import StickerBoardContainer from "../stickerBoard/stickerBoardContainer";
 import { getNotes, createNote, updateNote, deleteNote } from './../forStorage';
 import { useLoaderData } from "react-router-dom";
 import { DndProvider } from "react-dnd";
@@ -51,8 +51,8 @@ const Root = () => {
 		<>
 			<Header />
 			<DndProvider backend={HTML5Backend}>
-				{/* <StickerBoard arrNotes={notes} /> */}
-				<DNDStickerBoard arrNotes={notes}/>
+				<StickerBoardContainer arrNotes={notes} />
+				{/* <DNDStickerBoard arrNotes={notes}/> */}
 			</DndProvider>
 			<Footer />
 		</>

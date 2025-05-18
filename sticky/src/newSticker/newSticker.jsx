@@ -28,6 +28,7 @@ const NewSticker = ({ setCreateNewSticker }) => {
 
 	useEffect(() => {
     if (fetcher.data?.success) {
+			console.log(fetcher.data)
       setCreateNewSticker(false);
     }
   }, [fetcher.data, setCreateNewSticker]);
@@ -60,7 +61,6 @@ const NewSticker = ({ setCreateNewSticker }) => {
 						<StickerButton
 							type={"submit"}
 							icon={<SaveStickerIcon />}
-							//value={value}
 							disabled={!value || fetcher.state === "submitting"}
 							label={
 								fetcher.state === "submitting" ? "Сохранение..." : "Сохранить"

@@ -1,3 +1,4 @@
+import styles from './DNDstickerBoard.module.scss'
 import update from 'immutability-helper'
 import { useCallback, useState } from 'react'
 import { useDrop } from 'react-dnd'
@@ -5,23 +6,27 @@ import { DNDSticker } from '../sticker/DNDsticker'
 import { StickerTypes} from '../sticker/StickerTypes.js'
 import { softSnap as doSnapToGrid } from './snapToGrid.js'
 
-const styles = {
-  width: '1400px',
-  height: '100vh',
+const style = {
+  width: '100%',
+  height: '100%',
   backgroundColor: 'violet',
   border: '1px solid black',
   position: 'relative',
 }
-export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true }) => {
+export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCreateNewSticker, arrNotes }) => {
   console.log('hideSourceOnDrag:', hideSourceOnDrag);
   console.log('snapToGrid:', snapToGrid);
-  const [stickers, setStickers] = useState({
-    a: { top: 20, left: 100, title: 'Drag me around', zIndex: 1 },
-    b: { top: 100, left: 200, title: 'Drag me 111', zIndex: 1 },
-    c: { top: 180, left: 350, title: 'Drag me 222', zIndex: 1 },
-    d: { top: 180, left: 350, title: 'Drag me 333', zIndex: 1 },
-    e: { top: 180, left: 450, title: 'Drag me 444', zIndex: 1 },
-  })
+	console.log('В зону днд пришел массив', arrNotes);
+  // const [stickers, setStickers] = useState({
+  //   a: { top: 20, left: 100, title: 'Drag me around', zIndex: 1 },
+  //   b: { top: 100, left: 200, title: 'Drag me 111', zIndex: 1 },
+  //   c: { top: 180, left: 350, title: 'Drag me 222', zIndex: 1 },
+  //   d: { top: 180, left: 350, title: 'Drag me 333', zIndex: 1 },
+  //   e: { top: 180, left: 450, title: 'Drag me 444', zIndex: 1 },
+  // })
+	const [stickers, setStickers] = useState(arrNotes)
+
+
   const moveBox = useCallback(
     (id, left, top, zIndex) => {
         setStickers(
@@ -132,24 +137,31 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true }) 
   }
 
   return (
-        <div ref={drop} style={styles}>
-          {Object.keys(stickers).map((key) => {
-            const { left, top, title, zIndex } = stickers[key]
-            return (
-                  <DNDSticker
-                    key={key}
-                    id={key}
-                    left={left}
-                    top={top}
-                    zIndex={zIndex}
-                    hideSourceOnDrag={hideSourceOnDrag}
-                    handleClickSticker={handleClickSticker}
-                  >
-                    {title}
-                  </DNDSticker>
-            )
-          })}
-        </div>
+        <>
+        	<div ref={drop} style={style}>
+	          {Object.keys(stickers).map((key) => {
+	            const { left, top, title, zIndex } = stickers[key]
+	            return (
+	                  <DNDSticker
+	                    key={key}
+	                    id={key}
+	                    left={left}
+	                    top={top}
+	                    zIndex={zIndex}
+	                    hideSourceOnDrag={hideSourceOnDrag}
+	                    handleClickSticker={handleClickSticker}
+	                  >
+	                    {title}
+	                  </DNDSticker>
+	            )
+	          })}
+	        </div>
+					<button
+						className={`${styles.commonButton} ${styles.circleButton}`}
+						onClick={() => setCreateNewSticker(true)}
+						type="button"
+					/>
+        </>
   )
 }
 

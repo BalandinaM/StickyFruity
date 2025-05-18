@@ -24,7 +24,7 @@ export async function getNotes() {
 // 	return note;
 // }
 
-export async function createNote(dates, containerSize = null, currentMaxZIndex = 1) {
+export async function createNote(dates, containerSize = null) {
   await someNetwork(); // Ваша сетевая функция, если нужна
 
   const id = nanoid(3);
@@ -33,10 +33,18 @@ export async function createNote(dates, containerSize = null, currentMaxZIndex =
   const stickerWidth = 250; // Ширина стикера (уточните ваше значение)
   const stickerHeight = 250; // Высота стикера (уточните ваше значение)
 
-  // 1. Вычисляем центр области
+	const existingStickers = await getNotes();
+
+	// Находим максимальный zIndex среди существующих стикеров
+  const maxZIndex = Object.values(existingStickers).reduce(
+    (max, sticker) => Math.max(max, sticker.zIndex || 1),
+    1
+  );
+
+  // Вычисляем центр области
   let centerX, centerY;
 
-  if (containerSize) {
+  if (containerSize) {//вероятно стоит вообще убрать эту ветку с размером контейнера
     // Если передан размер контейнера (например, {width: 1000, height: 800})
     centerX = containerSize.width / 2 - stickerWidth / 2;
     centerY = containerSize.height / 2 - stickerHeight / 2;
@@ -54,16 +62,16 @@ export async function createNote(dates, containerSize = null, currentMaxZIndex =
     [id]: {
       top: centerY + randomOffset(),
       left: centerX + randomOffset(),
-      title: dates || 'New sticker',
-      zIndex: currentMaxZIndex + 1,
+      title: dates.newSticker,
+      zIndex: maxZIndex + 1,
       color: stickerColors[Math.floor(Math.random() * stickerColors.length)],
-      width: stickerWidth, // Добавляем размеры, если нужно
-      height: stickerHeight
+      //width: stickerWidth, // Добавляем размеры, если нужно
+      //height: stickerHeight
     }
   };
 
   // 3. Обновляем хранилище
-  const existingStickers = await getNotes();
+  //const existingStickers = await getNotes();
   const updatedStickers = { ...newSticker, ...existingStickers };
   await setNotes(updatedStickers);
 
