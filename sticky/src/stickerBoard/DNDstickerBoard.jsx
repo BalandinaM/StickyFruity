@@ -1,10 +1,11 @@
 import styles from './DNDstickerBoard.module.scss'
 import update from 'immutability-helper'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useRef, useEffect } from 'react'
 import { useDrop } from 'react-dnd'
 import { DNDSticker } from '../sticker/DNDsticker'
 import { StickerTypes} from '../sticker/StickerTypes.js'
 import { softSnap as doSnapToGrid } from './snapToGrid.js'
+import { updateNote } from '../forStorage.js'
 
 const style = {
   width: '100%',
@@ -14,31 +15,57 @@ const style = {
   position: 'relative',
 }
 export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCreateNewSticker, arrNotes }) => {
-  console.log('hideSourceOnDrag:', hideSourceOnDrag);
-  console.log('snapToGrid:', snapToGrid);
-	console.log('В зону днд пришел массив', arrNotes);
-  // const [stickers, setStickers] = useState({
-  //   a: { top: 20, left: 100, title: 'Drag me around', zIndex: 1 },
-  //   b: { top: 100, left: 200, title: 'Drag me 111', zIndex: 1 },
-  //   c: { top: 180, left: 350, title: 'Drag me 222', zIndex: 1 },
-  //   d: { top: 180, left: 350, title: 'Drag me 333', zIndex: 1 },
-  //   e: { top: 180, left: 450, title: 'Drag me 444', zIndex: 1 },
-  // })
-	const [stickers, setStickers] = useState(arrNotes)
+  // //console.log('hideSourceOnDrag:', hideSourceOnDrag);
+  // console.log('snapToGrid:', snapToGrid);
+	// console.log('В зону днд пришел массив', arrNotes);
+	const [stickers, setStickers] = useState(arrNotes);
+	const saveTimeoutRef = useRef(null);
+
+	// Эффект для синхронизации с внешними изменениями arrNotes
+  useEffect(() => {
+    setStickers(arrNotes);
+  }, [arrNotes]);
+
+  const saveStickerPosition = useCallback(async (id, updatedSticker) => {
+    try {
+      await updateNote(id, updatedSticker);
+      ////console.log(`Позиция стикера ${id} сохранена`);
+    } catch (error) {
+      console.error(`Ошибка при сохранении стикера ${id}:`, error);
+    }
+  }, []);
 
 
-  const moveBox = useCallback(
+   const moveBox = useCallback(
     (id, left, top, zIndex) => {
-        setStickers(
-        update(stickers, {
-          [id]: {
-            $merge: { left, top, zIndex },
-          },
-        }),
-      )
+      const updatedStickers = update(stickers, {
+        [id]: {
+          $merge: { left, top, zIndex },
+        },
+      });
+
+      setStickers(updatedStickers);
+
+      // Откладываем сохранение на 500 мс (debounce)
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+
+      saveTimeoutRef.current = setTimeout(() => {
+        saveStickerPosition(id, updatedStickers[id]);
+      }, 500);
     },
-    [stickers, setStickers],
-  )
+    [stickers, saveStickerPosition],
+  );
+
+  // Очищаем таймаут при размонтировании
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, []);
 
   const [, drop] = useDrop(
     () => ({
@@ -71,7 +98,7 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, se
           topZIndex = Math.max(
             ...overlappingStickers.map(key => stickers[key].zIndex || 0)
           );
-          console.log('Максимальный zIndex среди наложенных стикеров:', topZIndex)
+          //console.log('Максимальный zIndex среди наложенных стикеров:', topZIndex)
           newZIndex = topZIndex + 1;
           if (snapToGrid) {
             ;[left, top] = doSnapToGrid(left, top)
@@ -90,51 +117,48 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, se
     [moveBox],
   )
 
-  const handleClickSticker = (id) => {
-    console.log(`Клик по стикеру! ${id}`);
+	const handleClickSticker = useCallback(async (id) => {
+  //console.log(`Клик по стикеру! ${id}`);
 
-    // 1. Находим все стикеры, с которыми есть пересечение
-    const overlappingStickers = Object.keys(stickers).filter((key) => {
-      const currentSticker = stickers[id]; // Получаем данные текущего стикера
-      const s = stickers[key];
+  // 1. Находим пересекающиеся стикеры
+  const overlappingStickers = Object.keys(stickers).filter((key) => {
+    const currentSticker = stickers[id];
+    const s = stickers[key];
+    return (
+      key !== id &&
+      currentSticker.left >= s.left - 250 &&
+      currentSticker.left <= s.left + 250 &&
+      currentSticker.top >= s.top - 250 &&
+      currentSticker.top <= s.top + 250
+    );
+  });
 
-      return (
-        key !== id && // Не тот же самый стикер
-        currentSticker.left >= s.left - 50 &&
-        currentSticker.left <= s.left + 50 && // Проверка по X
-        currentSticker.top >= s.top - 50 &&
-        currentSticker.top <= s.top + 50 // Проверка по Y
-      );
-    });
+  if (overlappingStickers.length > 0) {
+    //console.log('Стикер в стопке! Поднимаем на верх...');
 
-    console.log('Пересекающиеся стикеры:', overlappingStickers);
+    // 2. Вычисляем новый zIndex
+    const allZIndices = Object.values(stickers).map(s => s.zIndex || 0);
+    const newZIndex = Math.max(...allZIndices) + 1;
 
-    if (overlappingStickers.length > 0) {
-      console.log('Стикер находится в стопке! Поднимаем на верх...');
-
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-			// тут из рефа надо будет достать!!!
-			//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-      // 2. Находим максимальный zIndex среди всех стикеров (не только пересекающихся)
-      const allZIndices = Object.values(stickers).map(s => s.zIndex || 0);
-      const maxZIndex = Math.max(...allZIndices);
-
-      // 3. Устанавливаем новый zIndex (на 1 больше максимального)
-      const newZIndex = maxZIndex + 1;
-
-      // 4. Обновляем стикер
-      setStickers(prev => ({
+    // 3. Обновляем локальное состояние
+    setStickers(prev => {
+      const updatedStickers = {
         ...prev,
         [id]: {
           ...prev[id],
           zIndex: newZIndex
         }
-      }));
+      };
 
-      console.log(`Новый zIndex для стикера ${id}: ${newZIndex}`);
-    }
+      // 4. Сохраняем в хранилище (без задержки, так как это клик)
+      saveStickerPosition(id, updatedStickers[id]);
+
+      return updatedStickers;
+    });
+
+    //console.log(`Новый zIndex для ${id}: ${newZIndex}`);
   }
+}, [stickers, saveStickerPosition]);
 
   return (
         <>

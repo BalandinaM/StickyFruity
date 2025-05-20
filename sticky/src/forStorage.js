@@ -9,21 +9,6 @@ export async function getNotes() {
 	return notes;
 }
 
-// export async function createNote(dates) {
-// 	await someNetwork();
-// 	console.log(dates.newSticker);
-// 	let id = nanoid(5);
-// 	let note = {
-// 		id,
-// 		note: dates.newSticker,
-// 		color: stickerColors[Math.floor(Math.random() * stickerColors.length)],
-// 	};
-// 	let notes = await getNotes();
-// 	notes.unshift(note);
-// 	await setNotes(notes);
-// 	return note;
-// }
-
 export async function createNote(dates, containerSize = null) {
   await someNetwork(); // Ваша сетевая функция, если нужна
 
@@ -71,7 +56,6 @@ export async function createNote(dates, containerSize = null) {
   };
 
   // 3. Обновляем хранилище
-  //const existingStickers = await getNotes();
   const updatedStickers = { ...newSticker, ...existingStickers };
   await setNotes(updatedStickers);
 
@@ -82,14 +66,18 @@ function setNotes(notes) {
 	return localforage.setItem('notes', notes);
 }
 
-export async function updateNote(id, newText) {
-  const notes = await getNotes();
-  const updatedNotes = notes.map(note =>
-    note.id === id ? { ...note, note: newText } : note
-  );
+export async function updateNote(id, updatedSticker) {
+  const notes = await getNotes(); // Получаем ВЕСЬ объект стикеров
+  const updatedNotes = {
+    ...notes, // Копируем все старые стикеры
+    [id]: {  // Обновляем конкретный стикер
+      ...notes[id], // Копируем его старые свойства
+      ...updatedSticker // Добавляем/перезаписываем новые
+    }
+  };
   await localforage.setItem('notes', updatedNotes);
-  return updatedNotes.find(note => note.id === id);
-};
+  return updatedNotes[id]; // Возвращаем обновлённый стикер
+}
 
 export async function  deleteNote(id) {
   const notes = await getNotes();
