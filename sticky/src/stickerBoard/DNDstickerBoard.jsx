@@ -10,8 +10,8 @@ import { updateNote } from '../forStorage.js'
 const style = {
   width: '100%',
   height: '100%',
-  backgroundColor: 'violet',
-  border: '1px solid black',
+  //backgroundColor: 'violet',
+  //border: '1px solid black',
   position: 'relative',
 }
 export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCreateNewSticker, arrNotes }) => {
@@ -128,7 +128,7 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, se
       key !== id &&
       currentSticker.left >= s.left - 250 &&
       currentSticker.left <= s.left + 250 &&
-      currentSticker.top >= s.top - 250 &&
+      currentSticker.top >= s.top - 250 && //высоту надо сделать динамическую
       currentSticker.top <= s.top + 250
     );
   });

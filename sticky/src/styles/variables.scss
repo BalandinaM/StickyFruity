@@ -37,7 +37,7 @@ $sticker-lg: 18px; // Крупные стикеры
 $sticker: clamp(12px, 1.5vw, 16px);
 $textarea-text: clamp(14px, 3vw, 20px);
 // Nunito (интерфейс) — адаптивные
-//$interface-sm: clamp(11px, 3vw, 12px); // 12px (десктоп) → ~11px (мобильные)
+$interface-xs: clamp(11px, 1.5vw, 14px); // 12px (десктоп) → ~11px (мобильные)
 $interface-sm: clamp(11px, 3vw, 16px);
 $interface-md: clamp(16px, 4.5vw, 18px); // 18px → ~16px
 $interface-lg: clamp(20px, 6vw, 24px); // 24px → ~20px
