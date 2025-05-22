@@ -12,7 +12,11 @@ export const DNDSticker = ({ id, left, top, zIndex, backgroundColor, hideSourceO
 	const [isHovered, setIsHovered] = useState(false);
 	const fetcher = useFetcher();
 	const [isEdit, setIsEdit] = useState(false);
-	const [text, setText] = useState(children)
+	const [text, setText] = useState(children);
+
+	useEffect(() => {
+    setText(children);
+  }, [children]);
 
   const [{ isDragging }, drag] = useDrag(
     () => ({
@@ -24,6 +28,14 @@ export const DNDSticker = ({ id, left, top, zIndex, backgroundColor, hideSourceO
     }),
     [id, left, top, zIndex],
   )
+
+	useEffect(() => {
+    if (fetcher.data?.success) {
+      setIsEdit(false);
+      //fetcher.data = null; // Сброс данных fetcher
+    }
+  }, [fetcher.data, setIsEdit]);
+
   if (isDragging && hideSourceOnDrag) {
     return <div ref={drag} />
   }
@@ -43,7 +55,12 @@ export const DNDSticker = ({ id, left, top, zIndex, backgroundColor, hideSourceO
 		console.log(text)
 	}
 
-	const handleSave = () => {
+	const handleSave = (e) => {
+		if (!text.trim()) {
+			e.preventDefault();
+			alert('Введите текст стикера');
+			return;
+		}
 		console.log(text)
     fetcher.submit(
       {
@@ -54,12 +71,6 @@ export const DNDSticker = ({ id, left, top, zIndex, backgroundColor, hideSourceO
       { method: "post" }
     );
   };
-
-	// useEffect(() => {
-	// 	if (fetcher.data?.success) {
-	// 		setIsEdit(false);
-	// 	}
-	// }, [fetcher.data, setIsEdit]);
 
   return (
 		<div
@@ -72,7 +83,7 @@ export const DNDSticker = ({ id, left, top, zIndex, backgroundColor, hideSourceO
 		>
 			{isEdit ? (
 				<>
-					<textarea value={text} onChange={(e) => setText(e.target.value)} />
+					<textarea value={text} onChange={(e) => setText(e.target.value)} autoFocus/>
 					<button className={styles.button} onClick={handleSave}>Сохранить</button>
 				</>
 			) : (

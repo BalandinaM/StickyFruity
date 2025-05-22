@@ -51,6 +51,7 @@ const NewSticker = ({ setCreateNewSticker }) => {
 						id="newSticker"
 						onChange={(e) => setValue(e.target.value)}
 						placeholder="Введите текст..."
+						autoFocus
 					></textarea>
 					<div className={styles.wrapButton}>
 						<StickerButton
