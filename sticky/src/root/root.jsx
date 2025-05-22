@@ -1,7 +1,7 @@
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import StickerBoardContainer from "../stickerBoard/stickerBoardContainer";
-import { getNotes, createNote, updateNote, deleteNote } from './../forStorage';
+import { getNotes, createNote, updateNote, deleteNote, updateTextNote } from './../forStorage';
 import { useLoaderData } from "react-router-dom";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "../../node_modules/react-dnd-html5-backend/dist/index";
@@ -23,9 +23,9 @@ export async function action({ request }) {
         console.log("Новый стикер создан:", newNote);
         return { success: true, note: newNote };
 			}
-
       case "update": {
-        const updatedNote = await updateNote(data.id, data.note);
+				//console.log(data.note)
+				const updatedNote = await updateTextNote(data.id, data.title);
         console.log("Стикер обновлён:", updatedNote);
         return { success: true, note: updatedNote };
 			}

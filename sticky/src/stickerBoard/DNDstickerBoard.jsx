@@ -10,14 +10,9 @@ import { updateNote } from '../forStorage.js'
 const style = {
   width: '100%',
   height: '100%',
-  //backgroundColor: 'violet',
-  //border: '1px solid black',
   position: 'relative',
 }
 export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCreateNewSticker, arrNotes }) => {
-  // //console.log('hideSourceOnDrag:', hideSourceOnDrag);
-  // console.log('snapToGrid:', snapToGrid);
-	// console.log('В зону днд пришел массив', arrNotes);
 	const [stickers, setStickers] = useState(arrNotes);
 	const saveTimeoutRef = useRef(null);
 

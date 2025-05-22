@@ -68,6 +68,7 @@ function setNotes(notes) {
 
 export async function updateNote(id, updatedSticker) {
   const notes = await getNotes(); // Получаем ВЕСЬ объект стикеров
+	console.log(updatedSticker)
   const updatedNotes = {
     ...notes, // Копируем все старые стикеры
     [id]: {  // Обновляем конкретный стикер
@@ -79,10 +80,24 @@ export async function updateNote(id, updatedSticker) {
   return updatedNotes[id]; // Возвращаем обновлённый стикер
 }
 
+export async function updateTextNote(id, newText) {
+	const notes = await getNotes(); // Получаем ВЕСЬ объект стикеров
+	console.log(newText)
+  const updatedNotes = {
+    ...notes,
+    [id]: {
+      ...notes[id],
+      title: newText,
+    }
+  };
+  await localforage.setItem('notes', updatedNotes);
+  return updatedNotes[id]; // Возвращаем обновлённый стикер
+}
+
 export async function  deleteNote(id) {
   const notes = await getNotes();
-  const filteredNotes = notes.filter(note => note.id !== id);
-  await localforage.setItem('notes', filteredNotes);
+	delete notes[id]
+	await localforage.setItem('notes', notes);
 };
 
 let someCache = {};
