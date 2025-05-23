@@ -2,36 +2,37 @@
 import styles from "./newSticker.module.scss";
 import StickerButton from "../components/stickerButton/stickerButton";
 import SaveStickerIcon from "../components/saveStickerIcon/saveStickerIcon";
-import DeleteStickerIcon from "../components/deleteStickerIcon/deleteStickerIcon"
+import DeleteStickerIcon from "../components/deleteStickerIcon/deleteStickerIcon";
 import { useState, useEffect } from "react";
 import { useFetcher } from "react-router-dom";
+import { IconSave, IconClose } from "../assets/icons/icons";
+import { Tooltip } from "react-tooltip";
 
 const NewSticker = ({ setCreateNewSticker }) => {
 	const [value, setValue] = useState("");
 	const fetcher = useFetcher(); // Добавляем useFetcher
 
 	const handleDeleteClick = () => {
-		if (window.confirm('Вы уверены что хотите удалить введенный текст?')) {
+		if (window.confirm("Вы уверены что хотите удалить введенный текст?")) {
 			console.log("Удалить все нахрен!");
 			setValue("");
 			setCreateNewSticker(false);
 		}
-
 	};
 
 	const handleSubmit = (e) => {
 		if (!value.trim()) {
 			e.preventDefault();
-			alert('Введите текст стикера');
+			alert("Введите текст стикера");
 		}
 	};
 
 	useEffect(() => {
-    if (fetcher.data?.success) {
-			console.log(fetcher.data)
-      setCreateNewSticker(false);
-    }
-  }, [fetcher.data, setCreateNewSticker]);
+		if (fetcher.data?.success) {
+			console.log(fetcher.data);
+			setCreateNewSticker(false);
+		}
+	}, [fetcher.data, setCreateNewSticker]);
 
 	return (
 		<div
@@ -53,20 +54,25 @@ const NewSticker = ({ setCreateNewSticker }) => {
 						placeholder="Введите текст..."
 						autoFocus
 					></textarea>
-					<div className={styles.wrapButton}>
-						<StickerButton
-							type={"reset"}
-							icon={<DeleteStickerIcon />}
-							handleClick={handleDeleteClick}
-						/>
-						<StickerButton
+					<div className={styles.wrap_button}>
+						<button
+							className={styles.button}
 							type={"submit"}
-							icon={<SaveStickerIcon />}
-							disabled={!value || fetcher.state === "submitting"}
-							label={
-								fetcher.state === "submitting" ? "Сохранение..." : "Сохранить"
-							}
-						/>
+							data-tooltip-id="save-tooltip"
+							data-tooltip-content="Сохранить"
+						>
+							<IconSave />
+						</button>
+						<button
+							className={styles.button}
+							onClick={handleDeleteClick}
+							data-tooltip-id="cancel-tooltip"
+							data-tooltip-content="Отменить"
+						>
+							<IconClose />
+						</button>
+						<Tooltip id="save-tooltip" className={styles.tooltip_button} />
+						<Tooltip id="cancel-tooltip" className={styles.tooltip_button} />
 					</div>
 				</div>
 			</fetcher.Form>

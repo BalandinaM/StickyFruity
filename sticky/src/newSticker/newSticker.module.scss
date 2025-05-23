@@ -70,11 +70,32 @@ textarea {
 	padding: clamp(1rem, 3vw, 1.5rem);
 }
 
-.wrapButton {
+.wrap_button {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: flex-start;
+	gap: 5px;
+	flex-direction: row-reverse;
 	// padding: 5px;
 	padding: clamp(0.3rem, 1vw, 0.8rem);
 	padding-top: 0;
+
+	& .tooltip_button {
+		background: linear-gradient(90deg, #9B59B6, #54C6EB);
+		border-radius: 10px;
+	}
+}
+
+.button {
+	font-family: variables.$font-interface;
+	font-size: variables.$interface-xs;
+	opacity: 0.5;
+	padding: 5px;
+	width: 40px;
+	height: 40px;
+
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}
 }

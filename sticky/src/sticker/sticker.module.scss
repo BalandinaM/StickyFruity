@@ -38,12 +38,17 @@
 
 .wrap_button {
 	display: flex;
-	//gap: 5px;
-	justify-content: space-between;
+	gap: 5px;
+	justify-content: flex-start;
 	flex-direction: row-reverse;
 	opacity: 0; /* Начально невидимы */
   transform: translateY(10px); /* Начальное смещение */
   transition: all 0.3s ease; /* Плавное изменение */
+
+	& .tooltip_button {
+		background: linear-gradient(90deg, #9B59B6, #54C6EB);
+		border-radius: 10px;
+	}
 }
 
 .button {
@@ -51,6 +56,8 @@
 	font-size: variables.$interface-xs;
 	opacity: 0.5;
 	padding: 5px;
+	width: 30px;
+	height: 30px;
 
 	&:hover,
 	&:focus {
