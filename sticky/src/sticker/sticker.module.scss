@@ -20,20 +20,58 @@
 	gap: clamp(10px, 3vw, 25px);;
 	flex-direction: column;
 	justify-content: space-between;
-	transition: all 0.3s ease; /* Добавляем переход для всех свойств */
+	//transition: all 0.3s ease; /* Добавляем переход для всех свойств */
   box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Тень в обычном состоянии */
+	//transition-property: width, height, min-height, transform, box-shadow;
+  //transition-duration: 0.3s;
+  //transition-timing-function: cubic-bezier(0.18, 0.89, 0.32, 1.28);
+	transition:
+    width 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    height 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    min-height 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+		left 0.3s ease,
+    top 0.3s ease;
 }
 
 .note_hovered {
 	box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Усиленная тень при наведении */
   transform: translateY(-5px) scale(1.02); /* Поднимаем и немного увеличиваем */
-  transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Более динамичная анимация */
+  //transition: all 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* Более динамичная анимация */
 }
 
 .note_hovered .wrap_button {
   opacity: 1; /* Появляются */
   transform: translateY(0); /* Возвращаются на место */
   transition-delay: 0.1s; /* Задержка перед появлением */
+}
+
+.wrap_note__edit {
+	// width: clamp(250px, 30vw, 350px);
+  // height: clamp(250px, 30vw, 350px);
+	// min-height: clamp(250px, 30vw, 350px);
+  //transition: all 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+	width: clamp(250px, 40vw, 350px) !important;
+  height: clamp(250px, 40vw, 350px) !important;
+  min-height: clamp(250px, 40vw, 350px) !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) scale(1.05) !important;
+  z-index: 9999 !important; // Гарантированно поверх всех
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2) !important;
+}
+
+.note__edit {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	//padding: 25px;
+}
+
+.textarea {
+	flex-grow: 1;
+	padding: 0;
 }
 
 .wrap_button {
@@ -49,6 +87,11 @@
 		background: linear-gradient(90deg, #9B59B6, #54C6EB);
 		border-radius: 10px;
 	}
+
+	&__edit {
+		opacity: 1;
+		transform: none;
+	}
 }
 
 .button {
@@ -62,6 +105,11 @@
 	&:hover,
 	&:focus {
 		opacity: 1;
+	}
+
+	&__edit {
+		width: 40px;
+		height: 40px;
 	}
 }
 
