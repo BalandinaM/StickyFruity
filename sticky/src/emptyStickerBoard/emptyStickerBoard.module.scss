@@ -1,19 +1,29 @@
 @use "./../styles/variables.scss";
 
+.wrap {
+	text-align: center;
+}
+
 .text {
-	font-size: variables.$interface-md;
-	font-weight: variables.$weight-bold;
-	margin-bottom: 13px;
+	//font-size: variables.$interface-md;
+	//font-weight: variables.$weight-bold;
+	font-size: 1.2rem;
+	font-weight: 700;
+	margin-bottom: 0.6em;
 }
 
 .commonButton {
+	font-size: 1.2rem;
+	font-weight: 700;
 	display: block;
 	box-sizing: border-box;
 	border: none;
 	background-color: variables.$amethyst;
 	color: variables.$cream;
-	padding: 12px 35px;
+	padding: 0.7em 2em;
+	margin: 0 auto;
 	border-radius: 20px;
+
 
 	&:hover {
 		background-color: variables.$sky-blue;

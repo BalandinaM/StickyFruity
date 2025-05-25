@@ -48,6 +48,7 @@ const NewSticker = ({ setCreateNewSticker }) => {
 						Новый стикер
 					</h2>
 					<textarea
+						className={styles.textarea}
 						name="newSticker"
 						id="newSticker"
 						onChange={(e) => setValue(e.target.value)}

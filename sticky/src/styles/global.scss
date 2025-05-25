@@ -4,8 +4,8 @@
 :root {
 	font-family: variables.$font-interface;
 	line-height: 1.5;
-	font-weight: variables.$weight-regular;
-	font-size: variables.$interface-md;
+	font-weight: 400;
+	font-size: 16px;
 
 	color: variables.$text-interface;
 	background-color: variables.$cream;
@@ -16,16 +16,15 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
-a {}
-
-a:hover {}
-
 body {
 	margin: 0;
 	//display: flex;
 	//place-items: center;
-	min-width: 375px;
+	min-width: 1280px;
 	min-height: 100vh;
+	overflow-x: auto;
+	//background-color: pink;
+	background-image: url('./../assets/images/sublayer.png');
 }
 
 h1 {
@@ -53,10 +52,13 @@ h1 {
 // }
 
 #root {
+	//background-image: url('./../assets/images/sublayer.png');
+	//background-color: burlywood;
   max-width: 1280px;
   margin: 0 auto;
-	padding: clamp(1.5rem, 5vw, 3.2rem);
-	padding-bottom: 20px;
+	//padding: clamp(1.5rem, 5vw, 3.2rem);
+	padding: 1.5rem 2rem;
+	//padding-bottom: 20px;
   display: flex;
 	flex-direction: column;
 	height: 100vh;

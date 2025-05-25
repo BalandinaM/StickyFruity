@@ -13,6 +13,10 @@ $sky-blue: #54C6EB; // Свежий голубой
 $cream: #FFF8E8; // Теплый кремово-белый
 $text-stickers: #2E1A47; // Основной цвет текста
 $text-interface: #1A0D2B;
+
+//вероятно эти переменные и не нужны вовсе, цвета для стикеров у меня в js файле
+
+
 // ======================
 // Font Families
 // ======================
@@ -23,74 +27,74 @@ $font-display: 'Fredoka', sans-serif; // Заголовки (жирные и в�
 // ======================
 // Font Weights
 // ======================
-$weight-regular: 400;
-$weight-bold: 700;
+// $weight-regular: 400;
+// //$weight-bold: 700;
 
-// ======================
-// Adaptive Font Sizes (мобильные → десктоп)
-// ======================
+// // ======================
+// // Adaptive Font Sizes (мобильные → десктоп)
+// // ======================
 
-// Comic Neue (стикеры) — фиксированные размеры
-$sticker-sm: 12px; // Мелкие стикеры
-$sticker-md: 16px; // Средние стикеры
-$sticker-lg: 18px; // Крупные стикеры
-$sticker: clamp(12px, 1.5vw, 16px);
-$textarea-text: clamp(14px, 3vw, 20px);
-// Nunito (интерфейс) — адаптивные
-$interface-xs: clamp(11px, 1.5vw, 14px); // 12px (десктоп) → ~11px (мобильные)
-$interface-sm: clamp(11px, 3vw, 16px);
-$interface-md: clamp(16px, 4.5vw, 18px); // 18px → ~16px
-$interface-lg: clamp(20px, 6vw, 24px); // 24px → ~20px
-$interface-sm-bold: clamp(11px, 3vw, 12px); // 12px bold → ~11px bold
+// // Comic Neue (стикеры) — фиксированные размеры
+// $sticker-sm: 12px; // Мелкие стикеры
+// $sticker-md: 16px; // Средние стикеры
+// $sticker-lg: 18px; // Крупные стикеры
+// $sticker: clamp(12px, 1.5vw, 16px);
+// $textarea-text: clamp(14px, 3vw, 20px);
+// // Nunito (интерфейс) — адаптивные
+// $interface-xs: clamp(11px, 1.5vw, 14px); // 12px (десктоп) → ~11px (мобильные)
+// $interface-sm: clamp(11px, 3vw, 16px);
+// ///$interface-md: clamp(16px, 4.5vw, 18px); // 18px → ~16px
+// $interface-lg: clamp(20px, 6vw, 24px); // 24px → ~20px
+// //$interface-sm-bold: clamp(11px, 3vw, 12px); // 12px bold → ~11px bold
 
-// Fredoka (заголовки) — сильное масштабирование
-$display-xl: clamp(36px, 6vw, 54px); // 36px → ~28px на узких экранах
+// // Fredoka (заголовки) — сильное масштабирование
+// //$display-xl: clamp(36px, 6vw, 54px); // 36px → ~28px на узких экранах
 
-// ======================
-// Миксины
-// ======================
-@mixin sticker-text($size: 'md') {
-	font-family: $font-sticker;
+// // ======================
+// // Миксины
+// // ======================
+// @mixin sticker-text($size: 'md') {
+// 	font-family: $font-sticker;
 
-	@if $size =='sm' {
-		font-size: $sticker-sm;
-	}
+// 	@if $size =='sm' {
+// 		font-size: $sticker-sm;
+// 	}
 
-	@if $size =='md' {
-		font-size: $sticker-md;
-	}
+// 	@if $size =='md' {
+// 		font-size: $sticker-md;
+// 	}
 
-	@if $size =='lg' {
-		font-size: $sticker-lg;
-	}
+// 	@if $size =='lg' {
+// 		font-size: $sticker-lg;
+// 	}
 
-	font-weight: $weight-regular;
-	line-height: 1.4;
-}
+// 	font-weight: $weight-regular;
+// 	line-height: 1.4;
+// }
 
-@mixin interface-text($size: 'md', $bold: false) {
-	font-family: $font-interface;
+// @mixin interface-text($size: 'md', $bold: false) {
+// 	font-family: $font-interface;
 
-	@if $size =='sm' {
-		font-size: $interface-sm;
-	}
+// 	@if $size =='sm' {
+// 		font-size: $interface-sm;
+// 	}
 
-	@if $size =='md' {
-		font-size: $interface-md;
-	}
+// 	@if $size =='md' {
+// 		font-size: $interface-md;
+// 	}
 
-	@if $size =='lg' {
-		font-size: $interface-lg;
-	}
+// 	@if $size =='lg' {
+// 		font-size: $interface-lg;
+// 	}
 
-	font-weight: if($bold, $weight-bold, $weight-regular);
-	line-height: 1.5;
-}
+// 	font-weight: if($bold, $weight-bold, $weight-regular);
+// 	line-height: 1.5;
+// }
 
-@mixin display-heading {
-	font-family: $font-display;
-	font-size: $display-xl;
-	font-weight: $weight-bold;
-	line-height: 1.2;
-	margin-bottom: 1.5rem;
-}
+// @mixin display-heading {
+// 	font-family: $font-display;
+// 	font-size: $display-xl;
+// 	font-weight: $weight-bold;
+// 	line-height: 1.2;
+// 	margin-bottom: 1.5rem;
+// }

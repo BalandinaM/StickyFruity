@@ -3,7 +3,8 @@
 .header {
 	display: flex;
 	justify-content: end;
-	margin-bottom: clamp(1.2em, 1.5vw, 2em);
+	//margin-bottom: clamp(1.2em, 1.5vw, 2em);
+	margin-bottom: 2rem;
 }
 
 .visually_hidden {
@@ -17,7 +18,8 @@
 
 .logo {
 	font-family: variables.$font-display;
-	font-size: variables.$display-xl;
+	//font-size: variables.$display-xl;
+	font-size: clamp(36px, 6vw, 54px);
 	font-weight: 700;
 	background: linear-gradient(90deg, #9B59B6, #54C6EB);
   -webkit-background-clip: text;

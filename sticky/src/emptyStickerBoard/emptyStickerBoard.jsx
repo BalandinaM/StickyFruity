@@ -2,7 +2,7 @@ import styles from './emptyStickerBoard.module.scss'
 
 export const EmptyStickerBoard = ({setCreateNewSticker}) => {
 	return (
-		<>
+		<div className={styles.wrap}>
 			<p className={styles.text}>
 				Вы еще не добавили ни одного стикера. Сделайте это сейчас!
 			</p>
@@ -13,6 +13,6 @@ export const EmptyStickerBoard = ({setCreateNewSticker}) => {
 			>
 				Новый стикер
 			</button>
-		</>
+		</div>
 	);
 };
