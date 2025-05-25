@@ -1,11 +1,10 @@
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import StickerBoardContainer from "../stickerBoard/stickerBoardContainer";
-import { getNotes, createNote, updateNote, deleteNote, updateTextNote } from './../forStorage';
+import { getNotes, createNote, deleteNote, updateTextNote } from './../forStorage';
 import { useLoaderData } from "react-router-dom";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "../../node_modules/react-dnd-html5-backend/dist/index";
-import { DNDStickerBoard } from "../stickerBoard/DNDstickerBoard";
 
 export async function loader() {
 	const notes = await getNotes();
@@ -52,7 +51,6 @@ const Root = () => {
 			<Header />
 			<DndProvider backend={HTML5Backend}>
 				<StickerBoardContainer arrNotes={notes} />
-				{/* <DNDStickerBoard arrNotes={notes}/> */}
 			</DndProvider>
 			<Footer />
 		</>

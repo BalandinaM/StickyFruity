@@ -1,8 +1,8 @@
-import styles from './DNDstickerBoard.module.scss'
+import styles from './stickerBoard.module.scss'
 import update from 'immutability-helper'
 import { useCallback, useState, useRef, useEffect } from 'react'
 import { useDrop } from 'react-dnd'
-import { DNDSticker } from '../sticker/DNDsticker'
+import { Sticker } from '../sticker/sticker.jsx'
 import { StickerTypes} from '../sticker/StickerTypes.js'
 import { softSnap as doSnapToGrid } from './snapToGrid.js'
 import { updateNote } from '../forStorage.js'
@@ -12,7 +12,7 @@ const style = {
   height: '100%',
   position: 'relative',
 }
-export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCreateNewSticker, arrNotes }) => {
+export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCreateNewSticker, arrNotes }) => {
 	const [stickers, setStickers] = useState(arrNotes);
 	const saveTimeoutRef = useRef(null);
 
@@ -161,7 +161,7 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, se
 	          {Object.keys(stickers).map((key) => {
 	            const { left, top, title, zIndex, color } = stickers[key]
 	            return (
-	                  <DNDSticker
+	                  <Sticker
 	                    key={key}
 	                    id={key}
 	                    left={left}
@@ -172,7 +172,7 @@ export const DNDStickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, se
 	                    handleClickSticker={handleClickSticker}
 	                  >
 	                    {title}
-	                  </DNDSticker>
+	                  </Sticker>
 	            )
 	          })}
 	        </div>

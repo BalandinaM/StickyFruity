@@ -1,5 +1,4 @@
 import styles from "./header.module.scss";
-//import logo from './../assets/images/logoStickyFruity.png'
 
 const Header = () => {
 	return (
@@ -10,8 +9,6 @@ const Header = () => {
 				</span>
 				<span aria-hidden="true">StickyFruity</span>
 			</h1>
-			{/* <img className={styles.logo} src={logo} alt="Логотип StickyFruity" width="215" height="45"/> */}
-			{/* <span >StickyFruity</span> */}
 		</header>
 	);
 };

@@ -2,95 +2,47 @@
 
 .main {
 	flex-grow: 1;
-	//position: relative;
 }
 
-// .text {
-// 	font-size: variables.$interface-md;
-// 	font-weight: variables.$weight-bold;
-// 	margin-bottom: 13px;
-// }
+.commonButton {
+	display: block;
+	box-sizing: border-box;
+	border: none;
+	background-color: variables.$amethyst;
+	color: variables.$cream;
+	padding: 0.75rem 2.1rem;
+	border-radius: 20px;
 
-.listNotes {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	row-gap: clamp(22px, 1.5vw, 30px);
-	column-gap: clamp(22px, 1.5vw, 30px);
-	margin: auto;
-	//margin-bottom: 30px;
-	position: relative;
-	// min-width: 150px;
-	// min-height: 150px;
+	&:hover {
+		background-color: variables.$sky-blue;
+	}
+
+	&:focus,
+	&:focus-visible {
+		border: 2px solid variables.$text-interface;
+	}
 }
 
-// .note {
-// 	--note-color: variables.$sunflower;
-// 	width: 45%;
-//   max-width: 300px;
-//   height: 39vw;
-//   min-height: 150px;
-//   max-height: 300px;
-// 	background-color: var(--note-color);
-// 	background-image: url('./../assets/images/sublayer.png');
-// 	background-size: 100%;
-// 	background-repeat: repeat;
-// 	padding: 10px;
-// 	font-family: variables.$font-sticker;
-// 	font-size: variables.$sticker-sm;
-// 	overflow-wrap: break-word;
-//   word-break: break-word;
-//   hyphens: auto;
-// }
+.rectangleButton {
+	margin: 0 auto;
+}
 
-// .note_active {
-// 	width: 250px;
-// 	min-height: 250px;
-// 	position: absolute;
-// 	top: center;
-// 	left: center;
-// }
-
-// .commonButton {
-// 	display: block;
-// 	box-sizing: border-box;
-// 	border: none;
-// 	background-color: variables.$amethyst;
-// 	color: variables.$cream;
-// 	padding: 12px 35px;
-// 	border-radius: 20px;
-
-// 	&:hover {
-// 		background-color: variables.$sky-blue;
-// 	}
-
-// 	&:focus,
-// 	&:focus-visible {
-// 		border: 2px solid variables.$text-interface;
-// 	}
-// }
-
-// .rectangleButton {
-// 	margin: 0 auto;
-// }
-
-// .circleButton {
-// 	position: fixed;
-//   // right: 20px;
-//   // bottom: 20px;
-// 	//right: clamp(1.5rem, 5vw, 3.2rem);
-// 	right: calc(50% - min(1240px, 100%)/2 + clamp(1.5rem, 5vw, 6rem));
-// 	bottom: clamp(1.5rem, 3vw, 3.2rem);
-//   z-index: 1000;
-// 	width: 60px;
-// 	height: 60px;
-// 	width: clamp(60px, 8vw, 75px);
-// 	height: clamp(60px, 8vw, 75px);;
-// 	border-radius: 50%;
-// 	padding: 0;
-// 	background-image: url('./../assets/images/plusForButton.svg');
-// 	background-repeat: no-repeat;
-// 	background-size: clamp(20px, 4vw, 30px) clamp(20px, 4vw, 30px);
-// 	background-position: center;
-// }
+.circleButton {
+	position: fixed;
+  // right: 20px;
+  // bottom: 20px;
+	//right: clamp(1.5rem, 5vw, 3.2rem);
+	right: calc(50% - min(1240px, 100%)/2 + clamp(1.5rem, 5vw, 6rem));
+	bottom: clamp(1.5rem, 3vw, 3.2rem);
+  z-index: 1000;
+	width: 60px;
+	height: 60px;
+	width: clamp(60px, 8vw, 75px);
+	height: clamp(60px, 8vw, 75px);;
+	border-radius: 50%;
+	padding: 0;
+	background-image: url('./../assets/images/plusForButton.svg');
+	background-repeat: no-repeat;
+	background-size: clamp(20px, 4vw, 30px) clamp(20px, 4vw, 30px);
+	background-position: center;
+}
