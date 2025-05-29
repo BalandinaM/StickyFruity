@@ -72,11 +72,13 @@
 .note__edit {
 	display: flex;
 	flex-direction: column;
+	min-height: 350px;
 	height: 100%;
 	//padding: 25px;
 }
 
 .textarea {
+	font-size: 1.2rem;
 	flex-grow: 1;
 	padding: 0;
 }
