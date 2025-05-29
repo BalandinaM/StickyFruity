@@ -58,3 +58,6 @@ const Root = () => {
 }
 
 export default Root;
+
+//подумать над стилизацией кнопки добавления стикеров// think from styling button add stickers
+//добавить эффект при наведении на сслыку // added hover-effect to link

@@ -29,16 +29,17 @@
 
 .circleButton {
 	position: fixed;
-  // right: 20px;
-  // bottom: 20px;
-	//right: clamp(1.5rem, 5vw, 3.2rem);
-	right: calc(50% - min(1240px, 100%)/2 + clamp(1.5rem, 5vw, 6rem));
+	//right: calc(50% - min(1240px, 100%)/2 + clamp(1.5rem, 5vw, 6rem));
+	right: calc(50% - min(1240px, 100%)/2 + clamp(1.5rem, 5vw, 1.5rem));
+	//right: max(0px, calc(50% - 620px + clamp(1.5rem, 5vw, 6rem)));
+	//right: calc(100% - min(1240px, 100%) + clamp(1.5rem, 5vw, 6rem));
+	//right: 1.5rem;
 	bottom: clamp(1.5rem, 3vw, 3.2rem);
   z-index: 1000;
 	width: 60px;
 	height: 60px;
 	width: clamp(60px, 8vw, 75px);
-	height: clamp(60px, 8vw, 75px);;
+	height: clamp(60px, 8vw, 75px);
 	border-radius: 50%;
 	padding: 0;
 	background-image: url('./../assets/images/plusForButton.svg');
