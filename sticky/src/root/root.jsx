@@ -60,5 +60,3 @@ const Root = () => {
 export default Root;
 
 //текстареа в режиме редактирования не расттянута на весь стикер
-//подумать над стилизацией кнопки добавления стикеров// think from styling button add stickers
-//добавить эффект при наведении на сслыку // added hover-effect to link

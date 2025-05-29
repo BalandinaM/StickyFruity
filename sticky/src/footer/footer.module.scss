@@ -1,6 +1,16 @@
-//@use './../styles/variables.scss';
+@use './../styles/variables.scss';
 
 .copyright {
 	font-size: 0.75rem;
 	font-weight: 700;
+	color: variables.$text-interface;
+	opacity: 0.7;
+}
+
+.copyright:hover {
+	opacity: 1;
+	background: linear-gradient(90deg, #9B59B6, #54C6EB);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
