@@ -1,15 +1,42 @@
 @use "./../styles/variables.scss";
 
 .wrap {
-	text-align: center;
+	//text-align: center;
 }
+
+.title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 0.6em;
+}
+
+// .subtitle {
+// 	font-size: 1.4rem;
+// 	font-weight: 600;
+// 	margin-bottom: 0.6em;
+// }
 
 .text {
 	//font-size: variables.$interface-md;
 	//font-weight: variables.$weight-bold;
 	font-size: 1.2rem;
-	font-weight: 700;
+	font-weight: 500;
 	margin-bottom: 0.6em;
+}
+
+.item {
+	font-family: variables.$font-sticker;
+	padding-left: 1.8rem;
+}
+
+.item::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url('../assets/images/grape.png');
+  background-size: cover;
+  margin-right: 8px;
 }
 
 .commonButton {
@@ -18,19 +45,50 @@
 	display: block;
 	box-sizing: border-box;
 	border: none;
-	background-color: variables.$amethyst;
+	//background-color: variables.$amethyst;
 	color: variables.$cream;
 	padding: 0.7em 2em;
 	margin: 0 auto;
+	margin-top: 3rem;
 	border-radius: 20px;
+	animation: jump 0.8s ease-in-out 100;
+	background:
+    //url('./../assets/images/plusForButton.svg') center / clamp(20px, 4vw, 30px) no-repeat,
+    linear-gradient(145deg, #9B59B6 0%, #54C6EB 100%);
+
+  /* Эффекты объема */
+  box-shadow:
+    0 4px 15px rgba(155, 89, 182, 0.4),
+    0 6px 30px rgba(84, 198, 235, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
 
 
 	&:hover {
-		background-color: variables.$sky-blue;
-	}
+			transform: scale(1.05);
+			box-shadow:
+				0 6px 20px rgba(155, 89, 182, 0.5),
+				0 8px 40px rgba(84, 198, 235, 0.4),
+				inset 0 1px 1px rgba(255, 255, 255, 0.3);
+		}
 
 	&:focus,
 	&:focus-visible {
 		border: 2px solid variables.$text-interface;
 	}
 }
+
+@keyframes jump {
+  0% { transform: translateY(0); } /* Начало — на месте */
+  50% { transform: translateY(-10px); } /* Прыжок вверх */
+  100% { transform: translateY(0); } /* Возврат вниз */
+}
+
+/* Применяем анимацию к кнопке */
+// .jumping-btn {
+//   animation: jump 0.8s ease-in-out 3; /* Прыгает 3 раза */
+// }
+
+// /* Дополнительно: кнопка чуть увеличивается при наведении */
+// .create-sticker-btn:hover {
+//   transform: scale(1.1);
+// }
