@@ -64,6 +64,11 @@ export const Sticker = ({ id, left, top, zIndex, backgroundColor, hideSourceOnDr
 			alert("Введите текст стикера");
 			return;
 		}
+		if (text.length > 500) {
+			e.preventDefault();
+			alert("Ограничение 500 символов!");
+			return;
+		}
 		console.log(text);
 		fetcher.submit(
 			{

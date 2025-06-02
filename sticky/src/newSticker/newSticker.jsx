@@ -20,6 +20,12 @@ const NewSticker = ({ setCreateNewSticker }) => {
 		if (!value.trim()) {
 			e.preventDefault();
 			alert("Введите текст стикера");
+			return;
+		}
+		if (value.length > 500) {
+			e.preventDefault();
+			alert("Ограничение 500 символов!");
+			return;
 		}
 	};
 
