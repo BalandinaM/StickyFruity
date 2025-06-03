@@ -10,7 +10,6 @@ const NewSticker = ({ setCreateNewSticker }) => {
 
 	const handleDeleteClick = () => {
 		if (window.confirm("Вы уверены что хотите удалить введенный текст?")) {
-			console.log("Удалить все нахрен!");
 			setValue("");
 			setCreateNewSticker(false);
 		}
@@ -31,7 +30,6 @@ const NewSticker = ({ setCreateNewSticker }) => {
 
 	useEffect(() => {
 		if (fetcher.data?.success) {
-			console.log(fetcher.data);
 			setCreateNewSticker(false);
 		}
 	}, [fetcher.data, setCreateNewSticker]);

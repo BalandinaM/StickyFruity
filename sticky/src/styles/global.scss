@@ -19,12 +19,9 @@
 
 body {
 	margin: 0;
-	//display: flex;
-	//place-items: center;
 	min-width: 1280px;
 	min-height: 100vh;
 	overflow-x: auto;
-	//background-color: pink;
 	background-image: url('./../assets/images/sublayer.png');
 }
 
@@ -33,33 +30,10 @@ h1 {
 	line-height: 1.1;
 }
 
-// button {
-// 	display: block;
-// 	box-sizing: border-box;
-// 	border: none;
-// 	background-color: variables.$amethyst;
-// 	color: variables.$cream;
-// 	padding: 12px 35px;
-// 	border-radius: 20px;
-// }
-
-// button:hover {
-// 	background-color: variables.$sky-blue;
-// }
-
-// button:focus,
-// button:focus-visible {
-// 	border: 2px solid variables.$text-interface;
-// }
-
 #root {
-	//background-image: url('./../assets/images/sublayer.png');
-	//background-color: burlywood;
   max-width: 1280px;
   margin: 0 auto;
-	//padding: clamp(1.5rem, 5vw, 3.2rem);
 	padding: 1.5rem 2rem;
-	//padding-bottom: 20px;
   display: flex;
 	flex-direction: column;
 	height: 100vh;

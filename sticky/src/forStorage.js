@@ -9,57 +9,41 @@ export async function getNotes() {
 	return notes;
 }
 
-export async function createNote(dates, containerSize = null) {
-  await someNetwork(); // Ваша сетевая функция, если нужна
+export async function createNote(dates) {
+	await someNetwork();
 
-  const id = nanoid(3);
+	const id = nanoid(3);
 
-	//динамическое значение должно быть!!!!
-  const stickerWidth = 250; // Ширина стикера (уточните ваше значение)
-  const stickerHeight = 250; // Высота стикера (уточните ваше значение)
-
+	const stickerWidth = 250;
+	const stickerHeight = 250;
 	const existingStickers = await getNotes();
 
-	// Находим максимальный zIndex среди существующих стикеров
-  const maxZIndex = Object.values(existingStickers).reduce(
-    (max, sticker) => Math.max(max, sticker.zIndex || 1),
-    1
-  );
+	const maxZIndex = Object.values(existingStickers).reduce(
+		(max, sticker) => Math.max(max, sticker.zIndex || 1),
+		1
+	);
 
-  // Вычисляем центр области
-  let centerX, centerY;
+	let centerX, centerY;
 
-  if (containerSize) {//вероятно стоит вообще убрать эту ветку с размером контейнера
-    // Если передан размер контейнера (например, {width: 1000, height: 800})
-    centerX = containerSize.width / 2 - stickerWidth / 2;
-    centerY = containerSize.height / 2 - stickerHeight / 2;
-  } else {
-    // Если используется вся страница (viewport)
-    centerX = window.innerWidth / 2 - stickerWidth / 2 + window.scrollX;
-    centerY = window.innerHeight / 2 - stickerHeight / 2 + window.scrollY;
-  }
+	centerX = window.innerWidth / 2 - stickerWidth / 2 + window.scrollX;
+	centerY = window.innerHeight / 2 - stickerHeight / 2 + window.scrollY;
 
-  // 2. Добавляем небольшое случайное смещение (+/- 50px)
-  //    чтобы новые стикеры не перекрывались
-  const randomOffset = () => Math.floor(Math.random() * 100) - 50;
+	const randomOffset = () => Math.floor(Math.random() * 100) - 50;
 
-  const newSticker = {
-    [id]: {
-      top: centerY + randomOffset(),
-      left: centerX + randomOffset(),
-      title: dates.newSticker,
-      zIndex: maxZIndex + 1,
-      color: stickerColors[Math.floor(Math.random() * stickerColors.length)],
-      //width: stickerWidth, // Добавляем размеры, если нужно
-      //height: stickerHeight
-    }
-  };
+	const newSticker = {
+		[id]: {
+			top: centerY + randomOffset(),
+			left: centerX + randomOffset(),
+			title: dates.newSticker,
+			zIndex: maxZIndex + 1,
+			color: stickerColors[Math.floor(Math.random() * stickerColors.length)],
+		},
+	};
 
-  // 3. Обновляем хранилище
-  const updatedStickers = { ...newSticker, ...existingStickers };
-  await setNotes(updatedStickers);
+	const updatedStickers = { ...newSticker, ...existingStickers };
+	await setNotes(updatedStickers);
 
-  return newSticker;
+	return newSticker;
 }
 
 function setNotes(notes) {
@@ -67,21 +51,21 @@ function setNotes(notes) {
 }
 
 export async function updateNote(id, updatedSticker) {
-  const notes = await getNotes(); // Получаем ВЕСЬ объект стикеров
+  const notes = await getNotes();
 	console.log(updatedSticker)
   const updatedNotes = {
-    ...notes, // Копируем все старые стикеры
-    [id]: {  // Обновляем конкретный стикер
-      ...notes[id], // Копируем его старые свойства
-      ...updatedSticker // Добавляем/перезаписываем новые
+    ...notes,
+    [id]: {
+      ...notes[id],
+      ...updatedSticker
     }
   };
   await localforage.setItem('notes', updatedNotes);
-  return updatedNotes[id]; // Возвращаем обновлённый стикер
+  return updatedNotes[id];
 }
 
 export async function updateTextNote(id, newText) {
-	const notes = await getNotes(); // Получаем ВЕСЬ объект стикеров
+	const notes = await getNotes();
 	console.log(newText)
   const updatedNotes = {
     ...notes,
@@ -91,7 +75,7 @@ export async function updateTextNote(id, newText) {
     }
   };
   await localforage.setItem('notes', updatedNotes);
-  return updatedNotes[id]; // Возвращаем обновлённый стикер
+  return updatedNotes[id];
 }
 
 export async function  deleteNote(id) {

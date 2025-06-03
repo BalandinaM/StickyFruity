@@ -2,9 +2,8 @@ import styles from './emptyStickerBoard.module.scss'
 
 export const EmptyStickerBoard = ({setCreateNewSticker}) => {
 	return (
-		<div className={styles.wrap}>
+		<div>
 			<h2 className={styles.title}>Фруктовые стикеры для самых вкусных идей!</h2>
-			{/* <h3 className={styles.subtitle}>Как начать?</h3> */}
 			<p className={styles.text}>Нажми на  кнопку «Новый стикер» — и на холсте появится первая сочная заметка!</p>
 			<ul>
 				<li className={`${styles.text} ${styles.item}`}>Тащи за любой край — перемещай стикер, куда хочешь</li>
@@ -14,9 +13,6 @@ export const EmptyStickerBoard = ({setCreateNewSticker}) => {
 			</ul>
 			<p className={styles.text}>Цвета выбираются рандомно — как фрукты в летнем саду!</p>
 			<p className={styles.text}>Давай вырастим здесь целый витаминный сад заметок!</p>
-			{/* <p className={styles.text}>
-				Вы еще не добавили ни одного стикера. Сделайте это сейчас!
-			</p> */}
 			<button
 				className={styles.commonButton}
 				onClick={() => setCreateNewSticker(true)}

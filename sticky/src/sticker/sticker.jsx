@@ -32,7 +32,6 @@ export const Sticker = ({ id, left, top, zIndex, backgroundColor, hideSourceOnDr
 	useEffect(() => {
 		if (fetcher.data?.success) {
 			setIsEdit(false);
-			//fetcher.data = null; // Сброс данных fetcher
 		}
 	}, [fetcher.data, setIsEdit]);
 
@@ -47,10 +46,8 @@ export const Sticker = ({ id, left, top, zIndex, backgroundColor, hideSourceOnDr
 	};
 
 	const handleEditSticker = () => {
-		console.log("edit", id);
 		setSavedText(text);
 		setIsEdit(true);
-		console.log(text);
 	};
 
 	const handleCancelEnter = () => {
@@ -69,7 +66,6 @@ export const Sticker = ({ id, left, top, zIndex, backgroundColor, hideSourceOnDr
 			alert("Ограничение 500 символов!");
 			return;
 		}
-		console.log(text);
 		fetcher.submit(
 			{
 				id: id,
@@ -86,13 +82,12 @@ export const Sticker = ({ id, left, top, zIndex, backgroundColor, hideSourceOnDr
 				isEdit ? styles.wrap_note__edit : ""
 			}`}
 			ref={drag}
-			//style={{ left, top, zIndex, backgroundColor }}
 			style={{
-				left: isEdit ? "50%" : left, // Если редактируем - центрируем
-				top: isEdit ? "50%" : top, // Если редактируем - центрируем
-				zIndex: isEdit ? 9999 : zIndex, // Временный высокий z-index
+				left: isEdit ? "50%" : left,
+				top: isEdit ? "50%" : top,
+				zIndex: isEdit ? 9999 : zIndex,
 				backgroundColor,
-				transform: isEdit ? "translate(-50%, -50%) scale(1.05)" : "none", // Центрирование + увеличение
+				transform: isEdit ? "translate(-50%, -50%) scale(1.05)" : "none",
 			}}
 			onClick={() => handleClickSticker(id)}
 			onMouseEnter={() => setIsHovered(true)}

@@ -38,41 +38,23 @@
 	height: clamp(60px, 8vw, 75px);
 	border-radius: 50%;
 	padding: 0;
-	// background-image: url('./../assets/images/plusForButton.svg');
-	// background-repeat: no-repeat;
-	// background-size: clamp(20px, 4vw, 30px) clamp(20px, 4vw, 30px);
-	// background-position: center;
-	// background: url('./../assets/images/plusForButton.svg') center / clamp(20px, 4vw, 30px) no-repeat,
-	// 					linear-gradient(90deg, #9B59B6, #54C6EB);
-
 	background:
     url('./../assets/images/plusForButton.svg') center / clamp(20px, 4vw, 30px) no-repeat,
     linear-gradient(145deg, #9B59B6 0%, #54C6EB 100%);
 
-  /* Эффекты объема */
   box-shadow:
     0 4px 15px rgba(155, 89, 182, 0.4),
     0 6px 30px rgba(84, 198, 235, 0.3),
     inset 0 1px 1px rgba(255, 255, 255, 0.2);
 
-  /* Анимация при наведении */
   transition: all 0.3s ease;
-  //transform: scale(1);
   cursor: pointer;
 }
 
 .circleButton:hover {
-  //transform: translateY(-3px);
 	transform: scale(1.05);
   box-shadow:
     0 6px 20px rgba(155, 89, 182, 0.5),
     0 8px 40px rgba(84, 198, 235, 0.4),
     inset 0 1px 1px rgba(255, 255, 255, 0.3);
 }
-
-// .circleButton:active {
-//   //transform: translateY(1px);
-//   box-shadow:
-//     0 2px 10px rgba(155, 89, 182, 0.3),
-//     inset 0 1px 1px rgba(0, 0, 0, 0.1);
-// }

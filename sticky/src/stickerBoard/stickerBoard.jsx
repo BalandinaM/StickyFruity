@@ -16,7 +16,6 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
 	const [stickers, setStickers] = useState(arrNotes);
 	const saveTimeoutRef = useRef(null);
 
-	// Эффект для синхронизации с внешними изменениями arrNotes
   useEffect(() => {
     setStickers(arrNotes);
   }, [arrNotes]);
@@ -24,7 +23,6 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
   const saveStickerPosition = useCallback(async (id, updatedSticker) => {
     try {
       await updateNote(id, updatedSticker);
-      ////console.log(`Позиция стикера ${id} сохранена`);
     } catch (error) {
       console.error(`Ошибка при сохранении стикера ${id}:`, error);
     }
@@ -41,7 +39,6 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
 
       setStickers(updatedStickers);
 
-      // Откладываем сохранение на 500 мс (debounce)
       if (saveTimeoutRef.current) {
         clearTimeout(saveTimeoutRef.current);
       }
@@ -53,7 +50,6 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
     [stickers, saveStickerPosition],
   );
 
-  // Очищаем таймаут при размонтировании
   useEffect(() => {
     return () => {
       if (saveTimeoutRef.current) {
@@ -72,7 +68,6 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
         const stickerWidth = 250;
         const stickerHeight = 250;
 
-        // Проверяем, находится ли стикер поверх другого стикера
         const overlappingStickers = Object.keys(stickers).filter((key) => {
           const s = stickers[key];
 
@@ -93,7 +88,6 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
           topZIndex = Math.max(
             ...overlappingStickers.map(key => stickers[key].zIndex || 0)
           );
-          //console.log('Максимальный zIndex среди наложенных стикеров:', topZIndex)
           newZIndex = topZIndex + 1;
           if (snapToGrid) {
             ;[left, top] = doSnapToGrid(left, top)
@@ -113,9 +107,7 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
   )
 
 	const handleClickSticker = useCallback(async (id) => {
-  //console.log(`Клик по стикеру! ${id}`);
 
-  // 1. Находим пересекающиеся стикеры
   const overlappingStickers = Object.keys(stickers).filter((key) => {
     const currentSticker = stickers[id];
     const s = stickers[key];
@@ -123,19 +115,16 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
       key !== id &&
       currentSticker.left >= s.left - 250 &&
       currentSticker.left <= s.left + 250 &&
-      currentSticker.top >= s.top - 250 && //высоту надо сделать динамическую
+      currentSticker.top >= s.top - 250 &&
       currentSticker.top <= s.top + 250
     );
   });
 
   if (overlappingStickers.length > 0) {
-    //console.log('Стикер в стопке! Поднимаем на верх...');
 
-    // 2. Вычисляем новый zIndex
     const allZIndices = Object.values(stickers).map(s => s.zIndex || 0);
     const newZIndex = Math.max(...allZIndices) + 1;
 
-    // 3. Обновляем локальное состояние
     setStickers(prev => {
       const updatedStickers = {
         ...prev,
@@ -145,13 +134,11 @@ export const StickerBoard = ({ hideSourceOnDrag = true, snapToGrid = true, setCr
         }
       };
 
-      // 4. Сохраняем в хранилище (без задержки, так как это клик)
       saveStickerPosition(id, updatedStickers[id]);
 
       return updatedStickers;
     });
 
-    //console.log(`Новый zIndex для ${id}: ${newZIndex}`);
   }
 }, [stickers, saveStickerPosition]);
 

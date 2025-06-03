@@ -19,22 +19,17 @@ export async function action({ request }) {
     switch (data._action) {
       case "create": {
 				const newNote = await createNote(data);
-        console.log("Новый стикер создан:", newNote);
         return { success: true, note: newNote };
 			}
       case "update": {
-				//console.log(data.note)
 				const updatedNote = await updateTextNote(data.id, data.title);
-        console.log("Стикер обновлён:", updatedNote);
         return { success: true, note: updatedNote };
 			}
       case "delete": {
         await deleteNote(data.id);
-        console.log("Стикер удалён, ID:", data.id);
         return { success: true };
 			}
       default:
-        console.warn("Неизвестное действие:", data._action);
         return { success: false, error: "Unknown action" };
     }
   } catch (error) {
@@ -45,7 +40,6 @@ export async function action({ request }) {
 
 const Root = () => {
 	const { notes } = useLoaderData();
-	//console.log('Загружены данные из локального хранилища', notes);
   return (
 		<>
 			<Header />
@@ -58,5 +52,3 @@ const Root = () => {
 }
 
 export default Root;
-
-// сделать ограничение на количество символов в стикере. Иначе вся верстка ломается
