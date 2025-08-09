@@ -1,12 +1,52 @@
-# React + Vite
+# 🟡 StickyFruity 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Demo](https://img.shields.io/badge/Demo-FF5722?style=for-the-badge)](https://balandinam.github.io/StickyFruity/)
+[![GitHub](https://img.shields.io/badge/Code-181717?style=for-the-badge&logo=github)](https://github.com/BalandinaM/StickyFruity)
 
-Currently, two official plugins are available:
+Интерактивное приложение для работы со стикерами в браузере с полным сохранением состояния.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Основные функции
+- 🖱️ Drag-and-drop перемещение
+- ✏️ Редактирование текста
+- 🗑️ Удаление стикеров
+- 📌 Запоминание позиций
+- 🎨 Автоматическое сохранение
 
-## Expanding the ESLint configuration
+## 🛠 Технологический стек
+- **React 19** + Vite
+- **React DnD** для перетаскивания
+- **LocalForage** для хранения
+- **Nanoid** для генерации ID
+- **Sass** для стилей
+- **Деплой** GitHub Pages
+- **ReactTooltip** для тултипов
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Запуск
+1. Установите зависимости:
+
+```npm install```
+
+2. Запустите dev-сервер:
+
+```npm run dev```
+
+### Для production-сборки:
+
+```npm run build```
+
+
+## 📸 Скриншоты
+
+| Описание | Скриншот |
+|----------|----------|
+| **Начало работы** | ![Начало работы](./assets/screenshots_for_readme/empty_sticker_board.png) |
+| **Создание нового стикера** | ![Создание нового стикера](./assets/screenshots_for_readme/create_new_sticker.png) |
+| **Доска со стикерами** | ![Доска со стикерами](./assets/screenshots_for_readme/sticker_board.png) |
+| **Редактирование стикера** | ![Редактирование стикера](./assets/screenshots_for_readme/editing_sticker.png) |
+
+
+## 📌 Планы по развитию
+
+- Замена системных алертов на стильные всплывающие уведомления для всех ключевых действий пользователя.
+- Добавить авторизацию и синхронизацию между устройствами
+- Адаптация интерфейса под смартфоны и планшеты
