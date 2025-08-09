@@ -15,7 +15,9 @@ const router = createBrowserRouter([
 		action: rootAction,
 		hydrateFallbackElement: <div>Загрузка...</div>,
 	},
-]);
+], {
+	basename: "/StickyFruity/",
+});
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
